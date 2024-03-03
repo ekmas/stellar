@@ -1,5 +1,6 @@
 ---
 import HeadSeo from '@/components/HeadSeo.astro'
+import Nav from '@/components/Nav.astro'
 
 import '@fontsource/karla/400.css'
 import '@fontsource/karla/500.css'
@@ -20,7 +21,14 @@ import '@fontsource/karla/700.css'
     <meta name="generator" content={Astro.generator} />
     <HeadSeo type="website" />
   </head>
-  <body>
-    <slot />
+  <body class="text-black dark:text-white">
+    <Nav />
+    <div
+      class="fixed left-0 top-0 z-[-2] h-screen w-full bg-neutral-100 bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(120,119,198,0.5),rgba(0,0,0,0))] dark:bg-neutral-950 dark:bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(120,119,198,0.3),rgba(255,255,255,0))]"
+    >
+    </div>
+    <div class="pt-20">
+      <slot />
+    </div>
   </body>
 </html>
