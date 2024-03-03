@@ -1,0 +1,42 @@
+---
+import { SITE, TWITTER_USERNAME, type Frontmatter } from '../config'
+
+type Props = {
+  frontmatter?: Frontmatter
+  type?: string
+}
+
+const { frontmatter, type } = Astro.props as Props
+
+const canonicalUrl = new URL(Astro.url.pathname, Astro.site)
+
+const formattedContentTitle = frontmatter?.title
+  ? frontmatter.title + ' - ' + SITE.title
+  : SITE.title
+
+const imageAlt = 'Astro Docs'
+const imageUrl = canonicalUrl + 'white.png'
+
+const ogType = type ?? 'article'
+---
+
+<!-- Page Metadata -->
+<link rel="canonical" href={canonicalUrl} />
+<meta name="description" property="og:description" content={SITE.description} />
+
+<!-- OpenGraph Tags -->
+<meta property="og:title" content={formattedContentTitle} />
+<meta property="og:type" content={ogType} />
+<meta property="og:url" content={canonicalUrl} />
+<meta property="og:locale" content={SITE.defaultLanguage} />
+<meta property="og:image" content={imageUrl} />
+<meta property="og:image:alt" content={imageAlt} />
+<meta property="og:site_name" content={SITE.title} />
+
+<!-- Twitter Tags -->
+<meta name="twitter:card" content="summary_large_image" />
+{TWITTER_USERNAME && <meta name="twitter:site" content={TWITTER_USERNAME} />}
+<meta name="twitter:title" content={formattedContentTitle} />
+<meta name="twitter:description" content={SITE.description} />
+<meta name="twitter:image" content={imageUrl} />
+<meta name="twitter:image:alt" content={imageAlt} />
