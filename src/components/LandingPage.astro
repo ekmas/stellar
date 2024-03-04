@@ -1,0 +1,78 @@
+---
+import Base from '@/layouts/Base.astro'
+import { GITHUB_REPO_URL } from '@/config'
+import { type LandingPageObj } from '@/i18n'
+
+const { t } = Astro.props as { t: LandingPageObj }
+---
+
+<Base>
+  <div class="flex h-[calc(100dvh-80px)] items-center justify-center pb-20">
+    <div class="mx-auto w-[1300px] max-w-full px-5">
+      <div class="flex flex-col items-center">
+        <h1
+          class="mx-auto w-[800px] bg-gradient-to-b from-black to-neutral-700 bg-clip-text text-center text-5xl font-extrabold leading-[1.4] text-transparent dark:from-white dark:to-neutral-400"
+        >
+          Astro Docs
+        </h1>
+        <p
+          class="mx-auto mt-7 w-[900px] text-center text-xl leading-relaxed tracking-wide opacity-80"
+        >
+          {t.description}
+        </p>
+        <div class="mt-12 flex items-center">
+          <a
+            href="#"
+            class="mr-5 flex h-12 items-center justify-center rounded-md bg-neutral-950 px-6 text-lg text-white transition-all dark:bg-neutral-100 dark:text-black"
+            >{t.getStartedBtnText}
+          </a>
+          <a
+            target="_blank"
+            href={GITHUB_REPO_URL}
+            class="group relative inline-flex h-12 items-center justify-center rounded-md bg-neutral-100 px-6 font-medium text-black outline outline-1 outline-black/50 transition-colors hover:outline-black dark:bg-neutral-950 dark:text-white dark:outline-white/50 dark:hover:outline-white"
+          >
+            <span class="text-lg">{t.githubBtnText}</span>
+            <div class="relative ml-3 h-5 w-5 overflow-hidden">
+              <div
+                class="absolute transition-all duration-300 group-hover:-translate-y-5 group-hover:translate-x-4"
+              >
+                <svg
+                  width="15"
+                  height="15"
+                  viewBox="0 0 15 15"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-5 w-5"
+                >
+                  <path
+                    d="M3.64645 11.3536C3.45118 11.1583 3.45118 10.8417 3.64645 10.6465L10.2929 4L6 4C5.72386 4 5.5 3.77614 5.5 3.5C5.5 3.22386 5.72386 3 6 3L11.5 3C11.6326 3 11.7598 3.05268 11.8536 3.14645C11.9473 3.24022 12 3.36739 12 3.5L12 9.00001C12 9.27615 11.7761 9.50001 11.5 9.50001C11.2239 9.50001 11 9.27615 11 9.00001V4.70711L4.35355 11.3536C4.15829 11.5488 3.84171 11.5488 3.64645 11.3536Z"
+                    fill="currentColor"
+                    fill-rule="evenodd"
+                    clip-rule="evenodd"
+                  >
+                  </path>
+                </svg>
+                <svg
+                  width="15"
+                  height="15"
+                  viewBox="0 0 15 15"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-5 w-5 -translate-x-4"
+                >
+                  <path
+                    d="M3.64645 11.3536C3.45118 11.1583 3.45118 10.8417 3.64645 10.6465L10.2929 4L6 4C5.72386 4 5.5 3.77614 5.5 3.5C5.5 3.22386 5.72386 3 6 3L11.5 3C11.6326 3 11.7598 3.05268 11.8536 3.14645C11.9473 3.24022 12 3.36739 12 3.5L12 9.00001C12 9.27615 11.7761 9.50001 11.5 9.50001C11.2239 9.50001 11 9.27615 11 9.00001V4.70711L4.35355 11.3536C4.15829 11.5488 3.84171 11.5488 3.64645 11.3536Z"
+                    fill="currentColor"
+                    fill-rule="evenodd"
+                    clip-rule="evenodd"
+                  >
+                  </path>
+                </svg>
+              </div>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</Base>
