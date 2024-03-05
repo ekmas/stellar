@@ -1,0 +1,21 @@
+---
+import Base from '@/layouts/Base.astro'
+import Sidebar from '@/components/Sidebar.astro'
+
+const { frontmatter, headings } = Astro.props
+---
+
+<Base>
+  <Sidebar />
+  <div class="ml-[300px] pt-20">
+    <div class="mx-auto grid w-[1000px] grid-cols-[700px_300px]">
+      <div
+        class="prose min-h-[calc(100dvh-80px)] w-full max-w-full border-r border-white/10 p-10 text-white/90 prose-headings:scroll-mt-28 prose-headings:text-white prose-a:text-white prose-blockquote:text-white prose-strong:text-white prose-code:text-white prose-ol:text-white prose-ul:text-white prose-table:text-white prose-tr:text-white prose-td:text-white"
+      >
+        <h1 id="_top">{frontmatter.title}</h1>
+        <p>{frontmatter.description}</p>
+        <slot />
+      </div>
+    </div>
+  </div>
+</Base>
