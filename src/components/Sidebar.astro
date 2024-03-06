@@ -1,4 +1,53 @@
+---
+import { SIDEBAR } from '@/config'
+import Accordion from '@/components/Accordion.astro'
+import SidebarLink from '@/components/SidebarLink.astro'
+
+const lang = 'en'
+---
+
 <aside
-  class="sidebar fixed left-0 top-20 z-10 h-[calc(100dvh-80px)] w-[300px] overflow-y-auto border-r border-r-black/10 px-8 dark:border-r-white/10"
+  class="sidebar fixed left-0 top-20 z-10 h-[calc(100dvh-80px)] w-[300px] overflow-y-auto border-r border-r-black/20 px-5 py-4 dark:border-r-white/20"
 >
+  {
+    Object.entries(SIDEBAR[lang]).map(([key, value]) => {
+      if (typeof value === 'string') {
+        return <SidebarLink href={`${lang}/${key}`} text={value} />
+      } else {
+        const sectionName = value.sectionName
+        const sectionKey = key
+        return (
+          <Accordion title={sectionName} key={sectionKey}>
+            {Object.entries(value.sectionItems).map(([key, value]) => {
+              if (typeof value === 'string') {
+                return (
+                  <SidebarLink
+                    href={`${lang}/${sectionKey}/${key}`}
+                    text={value}
+                  />
+                )
+              } else {
+                const subsectionName = value.subsectionName
+                const subsectionKey = key
+                return (
+                  <Accordion title={subsectionName} key={subsectionKey}>
+                    {Object.entries(value.subsectionItems).map(
+                      ([key, value]) => {
+                        return (
+                          <SidebarLink
+                            href={`${lang}/${sectionKey}/${subsectionKey}/${key}`}
+                            text={value}
+                          />
+                        )
+                      },
+                    )}
+                  </Accordion>
+                )
+              }
+            })}
+          </Accordion>
+        )
+      }
+    })
+  }
 </aside>
