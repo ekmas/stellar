@@ -1,4 +1,4 @@
-type LanguageKeys = keyof typeof LANGUAGES
+export type LanguageKeys = keyof typeof LANGUAGES
 
 type LanguageObject<T> = {
   [Lang in LanguageKeys]: T
