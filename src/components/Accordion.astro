@@ -1,0 +1,98 @@
+---
+const { title, key } = Astro.props as { title: string; key: string }
+---
+
+<div id={`accordion_${key}`} class="accordion group relative my-0.5 rounded-md">
+  <button
+    class="accordion__button flex w-full flex-1 items-center justify-between gap-2 rounded-md p-2 text-left font-medium text-black/80 transition hover:bg-black/10 dark:text-white/80 hover:dark:bg-white/10"
+    type="button"
+    id={`${key} accordion menu button`}
+    aria-expanded="false"
+    aria-controls={`${key} accordion menu content`}
+  >
+    {title}
+
+    <svg
+      aria-hidden="true"
+      class="accordion__chevron h-4 w-4 shrink-0 transition-transform"
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      fill="none"
+    >
+      <path
+        class="stroke-black/80 dark:stroke-white/80"
+        d="M4 9L12 17L20 9"
+        stroke-width="1.5"
+        stroke-linecap="round"
+        stroke-linejoin="round"></path>
+    </svg>
+  </button>
+
+  <div
+    id={`${key} accordion menu content`}
+    aria-labelledby={`${key} accordion menu button`}
+    class="accordion__content my-1 ml-3 hidden overflow-hidden border-l border-l-black/30 pl-4 transition-all duration-300 ease-in-out dark:border-l-white/30"
+  >
+    <slot />
+  </div>
+</div>
+
+<script>
+  function accordionSetup() {
+    const accordionMenus = document.querySelectorAll(
+      '.accordion',
+    ) as NodeListOf<HTMLElement>
+    accordionMenus.forEach((accordionMenu) => {
+      const accordionButton = accordionMenu.querySelector(
+        '.accordion__button',
+      ) as HTMLElement
+      const accordionChevron = accordionMenu.querySelector(
+        '.accordion__chevron',
+      ) as HTMLElement
+      const accordionContent = accordionMenu.querySelector(
+        '.accordion__content',
+      ) as HTMLElement
+
+      const openAccordion = () => {
+        accordionMenu.classList.add('active')
+        accordionButton.setAttribute('aria-expanded', 'true')
+        accordionContent.classList.remove('hidden')
+        accordionChevron.classList.add('rotate-180')
+      }
+
+      const closeAccordion = () => {
+        accordionMenu.classList.remove('active')
+        accordionButton.setAttribute('aria-expanded', 'false')
+        accordionContent.classList.add('hidden')
+        accordionChevron.classList.remove('rotate-180')
+      }
+
+      const key = accordionMenu.id.split('_')[1]
+
+      const preOpen =
+        location.href.split('/').filter((path) => path === key).length > 0
+
+      if (preOpen) openAccordion()
+
+      if (accordionButton && accordionContent && accordionChevron) {
+        accordionButton.addEventListener('click', (event) => {
+          if (!accordionMenu.classList.contains('active')) {
+            // if accordion is currently closed, so open it
+            openAccordion()
+          } else {
+            // accordion is currently open, so close it
+            closeAccordion()
+          }
+          event.preventDefault()
+          return false
+        })
+      }
+    })
+  }
+
+  // runs on initial page load
+  accordionSetup()
+
+  // runs on view transitions navigation
+  document.addEventListener('astro:after-swap', accordionSetup)
+</script>
