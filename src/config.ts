@@ -14,7 +14,6 @@ export type Frontmatter = {
   title: string
   description: string
   layout: string
-  sidebarOrder?: number
 }
 
 type SidebarSchema = {
