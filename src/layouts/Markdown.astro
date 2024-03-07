@@ -1,16 +1,19 @@
 ---
+import { type Frontmatter } from '@/config'
+
 import Base from '@/layouts/Base.astro'
 import Sidebar from '@/components/Sidebar.astro'
 
-const { frontmatter, headings } = Astro.props
+const { frontmatter } = Astro.props as { frontmatter: Frontmatter }
 ---
 
 <Base>
   <Sidebar />
-  <div class="ml-[300px] pt-20">
+  <div class="ml-[300px]">
     <div class="mx-auto grid w-[1000px] grid-cols-[700px_300px]">
       <div
-        class="prose min-h-[calc(100dvh-80px)] w-full max-w-full border-r border-white/10 p-10 text-white/90 prose-headings:scroll-mt-28 prose-headings:text-white prose-a:text-white prose-blockquote:text-white prose-strong:text-white prose-code:text-white prose-ol:text-white prose-ul:text-white prose-table:text-white prose-tr:text-white prose-td:text-white"
+        id="markdown"
+        class="prose min-h-[calc(100dvh-80px)] w-full max-w-full border-black/10 p-10 text-black/90 prose-headings:scroll-mt-28 prose-headings:text-black prose-a:text-black prose-blockquote:text-black prose-strong:text-black prose-ol:text-black prose-ul:text-black prose-table:text-black prose-tr:text-black prose-td:text-black dark:border-white/10 dark:text-white/90 dark:prose-headings:text-white dark:prose-a:text-white dark:prose-blockquote:text-white dark:prose-strong:text-white dark:prose-code:text-white dark:prose-ol:text-white dark:prose-ul:text-white dark:prose-table:text-white dark:prose-tr:text-white dark:prose-td:text-white"
       >
         <h1 id="_top">{frontmatter.title}</h1>
         <p>{frontmatter.description}</p>
@@ -19,3 +22,20 @@ const { frontmatter, headings } = Astro.props
     </div>
   </div>
 </Base>
+
+<style is:global>
+  #markdown code:not(pre)::before,
+  #markdown code:not(pre)::after {
+    content: '';
+  }
+
+  html.dark #markdown code:not(pre code) {
+    border: 1px solid rgba(255, 255, 255, 0.2);
+  }
+
+  html #markdown code:not(pre code) {
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    padding: 2px 6px;
+    border-radius: 10px;
+  }
+</style>
