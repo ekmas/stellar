@@ -1,6 +1,16 @@
 ---
-import { GITHUB_REPO_URL } from '@/config'
+import { GITHUB_REPO_URL, GET_STARTED_LINK } from '@/config'
 import ThemeSwitcher from '@/components/ThemeSwitcher.astro'
+import SelectLanguage from '@/components/SelectLanguage.astro'
+
+const lang = Astro.url.pathname.split('/')[1] || 'en'
+
+const isEnglishLandingPage = Astro.url.pathname === '/'
+const isLandingPage = Astro.url.pathname === `/${lang}` || isEnglishLandingPage
+
+const docsLink = isEnglishLandingPage
+  ? `/en${GET_STARTED_LINK}`
+  : `/${lang}${GET_STARTED_LINK}`
 ---
 
 <nav
@@ -8,14 +18,23 @@ import ThemeSwitcher from '@/components/ThemeSwitcher.astro'
 >
   <div class="mx-auto flex w-full items-center justify-between px-8 py-5">
     <div class="flex items-center">
-      <a class="transition-opacity hover:opacity-70" href="#">
+      <a
+        class="transition-opacity hover:opacity-70"
+        href={lang === 'en' ? '/' : `/${lang}`}
+      >
         <h2 class="text-2xl font-bold">AstroDocs</h2>
       </a>
     </div>
 
-    <div class="flex items-center gap-10 text-lg">
-      <a class="hover:opacity-70" href="/docs">Docs</a>
-      <a class="hover:opacity-70" target="_blank" href={GITHUB_REPO_URL}>
+    <div class="flex items-center text-lg">
+      {
+        isLandingPage && (
+          <a class="mr-10 hover:opacity-70" href={docsLink}>
+            Docs
+          </a>
+        )
+      }
+      <a class="mr-10 hover:opacity-70" target="_blank" href={GITHUB_REPO_URL}>
         <svg
           class="h-6 w-6"
           xmlns="http://www.w3.org/2000/svg"
@@ -27,6 +46,7 @@ import ThemeSwitcher from '@/components/ThemeSwitcher.astro'
         >
       </a>
       <ThemeSwitcher />
+      <SelectLanguage />
     </div>
   </div>
 </nav>
