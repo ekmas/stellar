@@ -1,0 +1,121 @@
+---
+import { LANGUAGES, type LanguageKeys } from '@/i18n'
+
+const langFromURL = Astro.url.pathname.split('/')[1] || 'en'
+const lang: LanguageKeys = langFromURL as LanguageKeys
+---
+
+<div class="relative z-10">
+  <button
+    class="flex items-center gap-4 rounded-md p-2 px-4 transition-[background-color] duration-300 hover:bg-black/10 dark:hover:bg-white/10"
+    data-active="false"
+    id="select-btn"
+  >
+    <span>
+      {LANGUAGES[lang]}
+    </span>
+
+    <svg
+      aria-hidden="true"
+      class="h-4 w-4 shrink-0 transition-transform"
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      fill="none"
+    >
+      <path
+        class="stroke-black/80 dark:stroke-white/80"
+        d="M4 9L12 17L20 9"
+        stroke-width="1.5"
+        stroke-linecap="round"
+        stroke-linejoin="round"></path>
+    </svg>
+  </button>
+  <div
+    id="language-dropdown"
+    class="duration invisible absolute right-0 top-16 w-min rounded-md border border-black/20 opacity-0 transition-all dark:border-white/20"
+  >
+    {
+      Object.entries(LANGUAGES).map(([key, value]) => {
+        return (
+          <button
+            class="flex w-full items-center justify-between rounded-md bg-neutral-100 px-6 py-2 text-left transition-[background-color] duration-300 hover:bg-black/10 dark:bg-neutral-950 dark:hover:bg-white/10"
+            data-lang={key}
+          >
+            <span class="mr-6">{value}</span>
+
+            {key === lang && (
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                class="h-6 w-6"
+                fill="none"
+              >
+                <path
+                  d="M5 13.3636L8.03559 16.3204C8.42388 16.6986 9.04279 16.6986 9.43108 16.3204L19 7"
+                  class="stroke-black dark:stroke-white"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            )}
+          </button>
+        )
+      })
+    }
+  </div>
+</div>
+
+<script>
+  import { type LanguageKeys } from '@/i18n'
+
+  const selectSetup = () => {
+    const langFromURL = location.pathname.split('/')[1] || 'en'
+    const lang: LanguageKeys = langFromURL as LanguageKeys
+
+    const selectBtn = document.querySelector('#select-btn')
+    const selectBtnIcon = document.querySelector('#select-btn svg')
+    const languageDropdown = document.querySelector('#language-dropdown')
+
+    const languageBtns = document.querySelectorAll(
+      '#language-dropdown > button',
+    )
+
+    selectBtn!.addEventListener('click', () => {
+      const isActive = selectBtn?.getAttribute('data-active') === 'true'
+
+      selectBtn?.setAttribute('data-active', isActive ? 'false' : 'true')
+
+      if (isActive) {
+        languageDropdown?.classList.add('invisible', 'opacity-0', 'top-16')
+        languageDropdown?.classList.remove('visible', 'opacity-100', 'top-20')
+      } else {
+        languageDropdown?.classList.add('visible', 'opacity-100', 'top-20')
+        languageDropdown?.classList.remove('invisible', 'opacity-0', 'top-16')
+      }
+
+      selectBtnIcon?.classList.toggle('rotate-180')
+    })
+
+    languageBtns.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const selectedLang = btn.getAttribute('data-lang')
+
+        if (selectedLang === lang) return
+
+        if (location.pathname === '/') {
+          location.assign(location.origin + '/' + selectedLang)
+        } else if (location.pathname === `/${lang}`) {
+          location.assign(location.origin)
+        } else {
+          const currentPath = location.pathname.slice(3)
+
+          location.assign(location.origin + `/${selectedLang}` + currentPath)
+        }
+      })
+    })
+  }
+
+  selectSetup()
+
+  document.addEventListener('astro:after-swap', selectSetup)
+</script>
