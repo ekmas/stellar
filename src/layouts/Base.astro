@@ -2,10 +2,15 @@
 import HeadSeo from '@/components/HeadSeo.astro'
 import Nav from '@/components/Nav.astro'
 import { ViewTransitions } from 'astro:transitions'
+import { type Frontmatter } from '@/config'
 
 import '@fontsource/karla/400.css'
 import '@fontsource/karla/500.css'
 import '@fontsource/karla/700.css'
+
+const { frontmatter } = Astro.props as {
+  frontmatter?: Frontmatter
+}
 ---
 
 <style is:global>
@@ -21,7 +26,7 @@ import '@fontsource/karla/700.css'
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
     <ViewTransitions />
-    <HeadSeo type="website" />
+    <HeadSeo type="website" frontmatter={frontmatter} />
   </head>
   <body class="text-black dark:text-white">
     <Nav />
@@ -37,6 +42,9 @@ import '@fontsource/karla/700.css'
 
 <script>
   function init() {
+    document.documentElement.classList.add('scroll-smooth')
+    // adding scroll-smooth class to html tag manually didn't work so I'm adding that class this way
+
     if (
       localStorage.theme === 'dark' ||
       (!('theme' in localStorage) &&
