@@ -4,9 +4,13 @@ import Nav from '@/components/Nav.astro'
 import { ViewTransitions } from 'astro:transitions'
 import { type Frontmatter } from '@/config'
 
+// font
 import '@fontsource/karla/400.css'
 import '@fontsource/karla/500.css'
 import '@fontsource/karla/700.css'
+
+// custom styling
+import '@/styling/scrollbar.css'
 
 const { frontmatter } = Astro.props as {
   frontmatter?: Frontmatter
