@@ -1,7 +1,8 @@
 ---
 import { GITHUB_EDIT_URL } from '@/config'
+import { type LanguageKeys, MISC } from '@/i18n/ui'
 
-const { file } = Astro.props as { file: string }
+const { file, lang } = Astro.props as { file: string; lang: LanguageKeys }
 
 const searchString = 'pages/'
 const startIndex = file.indexOf('pages/')
@@ -32,5 +33,5 @@ const fileUrl = file.substring(startIndex + searchString.length)
       stroke-linecap="round"
       stroke-linejoin="round"></path>
   </svg>
-  <span>Edit this page</span>
+  <span>{MISC[lang].editThisPage}</span>
 </a>

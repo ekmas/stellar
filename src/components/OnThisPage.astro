@@ -1,20 +1,24 @@
 ---
+import { type LanguageKeys, ON_THIS_PAGE } from '@/i18n/ui'
 import { type MarkdownHeading } from 'astro'
 
-const { headings } = Astro.props as { headings: MarkdownHeading[] }
+const { headings, lang } = Astro.props as {
+  headings: MarkdownHeading[]
+  lang: LanguageKeys
+}
 ---
 
 <div
   class="on-this-page fixed left-[calc(100%-500px)] top-20 h-[calc(100dvh-80px)] w-[300px] overflow-y-auto border-l border-l-black/20 p-5 dark:border-l-white/20"
 >
-  <h2 class="text-xl">On this page</h2>
+  <h2 class="text-xl">{ON_THIS_PAGE[lang].onThisPage}</h2>
 
   <div class="my-5 text-sm">
     <a
       class="mb-1 flex w-[250px] items-center justify-between rounded-lg p-1.5 pl-3 text-base text-black/80 transition-colors hover:bg-black/10 hover:text-black dark:text-white/80 dark:hover:bg-white/10 dark:hover:text-white"
       href="#_top"
     >
-      <span>Scroll to top</span>
+      <span>{ON_THIS_PAGE[lang].scrollToTop}</span>
 
       <svg
         class="h-5 w-5"

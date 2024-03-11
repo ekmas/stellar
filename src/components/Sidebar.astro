@@ -4,8 +4,7 @@ import { type LanguageKeys } from '@/i18n/ui'
 import Accordion from '@/components/Accordion.astro'
 import SidebarLink from '@/components/SidebarLink.astro'
 
-const langFromURL = Astro.url.pathname.split('/')[1] || 'en'
-const lang: LanguageKeys = langFromURL as LanguageKeys
+const { lang } = Astro.props as { lang: LanguageKeys }
 ---
 
 <aside

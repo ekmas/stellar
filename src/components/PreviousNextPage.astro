@@ -1,9 +1,8 @@
 ---
 import { SIDEBAR } from '@/i18n/sidebar'
-import { type LanguageKeys } from '@/i18n/ui'
+import { type LanguageKeys, MISC } from '@/i18n/ui'
 
-const langFromURL = Astro.url.pathname.split('/')[1] || 'en'
-const lang: LanguageKeys = langFromURL as LanguageKeys
+const { lang } = Astro.props as { lang: LanguageKeys }
 
 const linksArray = Object.entries(SIDEBAR[lang]).map(([key, value]) => {
   if (typeof value === 'string') {
@@ -73,7 +72,7 @@ const index = getLinkIndex() as number
           </svg>
 
           <div>
-            <p class="text-sm opacity-80">Previous</p>
+            <p class="text-sm opacity-80">{MISC[lang].previous}</p>
             <span class="text-2xl">{flattenedLinksArray[index - 1].t}</span>
           </div>
         </a>
@@ -88,7 +87,7 @@ const index = getLinkIndex() as number
           href={Astro.url.origin + '/' + flattenedLinksArray[index + 1].link}
         >
           <div>
-            <p class="text-right text-sm opacity-80">Next</p>
+            <p class="text-right text-sm opacity-80">{MISC[lang].next}</p>
             <span class="text-2xl">{flattenedLinksArray[index + 1].t}</span>
           </div>
 

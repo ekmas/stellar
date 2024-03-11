@@ -2,8 +2,10 @@
 import { GITHUB_REPO_URL, GET_STARTED_LINK } from '@/config'
 import ThemeSwitcher from '@/components/ThemeSwitcher.astro'
 import SelectLanguage from '@/components/SelectLanguage.astro'
+import { type LanguageKeys, NAV } from '@/i18n/ui'
 
-const lang = Astro.url.pathname.split('/')[1] || 'en'
+const langFromURL = Astro.url.pathname.split('/')[1] || 'en'
+const lang: LanguageKeys = langFromURL as LanguageKeys
 
 const isEnglishLandingPage = Astro.url.pathname === '/'
 const isLandingPage = Astro.url.pathname === `/${lang}` || isEnglishLandingPage
@@ -30,7 +32,7 @@ const docsLink = isEnglishLandingPage
       {
         isLandingPage && (
           <a class="mr-10 hover:opacity-70" href={docsLink}>
-            Docs
+            {NAV[lang].documentation}
           </a>
         )
       }
