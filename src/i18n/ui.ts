@@ -4,16 +4,16 @@ type LanguageObject<T> = {
   [Lang in LanguageKeys]: T
 }
 
+export const LANGUAGES = {
+  en: 'English',
+  sr: 'Srpski',
+} as const
+
 export type LandingPageObj = {
   description: string
   getStartedBtnText: string
   githubBtnText: string
 }
-
-export const LANGUAGES = {
-  en: 'Engleski',
-  sr: 'Srpski',
-} as const
 
 export const LANDING_PAGE: LanguageObject<LandingPageObj> = {
   en: {
