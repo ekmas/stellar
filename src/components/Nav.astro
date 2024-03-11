@@ -1,5 +1,5 @@
 ---
-import { GITHUB_REPO_URL, GET_STARTED_LINK } from '@/config'
+import { GITHUB_REPO_URL, GET_STARTED_LINK, PROJECT_NAME } from '@/config'
 import ThemeSwitcher from '@/components/ThemeSwitcher.astro'
 import SelectLanguage from '@/components/SelectLanguage.astro'
 import { type LanguageKeys, NAV } from '@/i18n/ui'
@@ -24,7 +24,7 @@ const docsLink = isEnglishLandingPage
         class="transition-opacity hover:opacity-70"
         href={lang === 'en' ? '/' : `/${lang}`}
       >
-        <h2 class="text-2xl font-bold">AstroDocs</h2>
+        <h2 class="text-2xl font-bold">{PROJECT_NAME}</h2>
       </a>
     </div>
 

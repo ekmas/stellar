@@ -1,6 +1,6 @@
 ---
 import Base from '@/layouts/Base.astro'
-import { GITHUB_REPO_URL, GET_STARTED_LINK } from '@/config'
+import { GITHUB_REPO_URL, GET_STARTED_LINK, PROJECT_NAME } from '@/config'
 import { type LandingPageObj } from '@/i18n/ui'
 
 const { t } = Astro.props as { t: LandingPageObj }
@@ -15,7 +15,7 @@ const lang = Astro.url.pathname.split('/')[1] || 'en'
         <h1
           class="mx-auto w-[800px] bg-gradient-to-b from-black to-neutral-700 bg-clip-text text-center text-5xl font-extrabold leading-[1.4] text-transparent dark:from-white dark:to-neutral-400"
         >
-          Astro Docs
+          {PROJECT_NAME}
         </h1>
         <p
           class="mx-auto mt-7 w-[900px] text-center text-xl leading-relaxed tracking-wide opacity-80"

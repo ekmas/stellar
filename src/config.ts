@@ -1,3 +1,6 @@
+export const PROJECT_NAME = 'Astro Docs'
+// used for landing page and nav
+
 export const SITE = {
   title: 'Astro Docs',
   description: 'Modern type-safe documentation theme for Astro.',
