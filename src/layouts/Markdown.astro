@@ -1,6 +1,7 @@
 ---
 import { type Frontmatter } from '@/types'
 import { type MarkdownHeading } from 'astro'
+import type { LanguageKeys } from '@/i18n/ui'
 
 import Base from '@/layouts/Base.astro'
 import Sidebar from '@/components/Sidebar.astro'
@@ -8,14 +9,17 @@ import OnThisPage from '@/components/OnThisPage.astro'
 import PreviousNextPage from '@/components/PreviousNextPage.astro'
 import EditThisPage from '@/components/EditThisPage.astro'
 
+const langFromURL = Astro.url.pathname.split('/')[1] || 'en'
+const lang: LanguageKeys = langFromURL as LanguageKeys
+
 const { frontmatter, headings } = Astro.props as {
   frontmatter: Frontmatter
   headings: MarkdownHeading[]
 }
 ---
 
-<Base frontmatter={frontmatter}>
-  <Sidebar />
+<Base frontmatter={frontmatter} lang={lang}>
+  <Sidebar lang={lang} />
   <div class="ml-[300px] mr-[500px]">
     <div class="mx-auto w-[800px]">
       <div
@@ -25,12 +29,12 @@ const { frontmatter, headings } = Astro.props as {
         <h1 id="_top">{frontmatter.title}</h1>
         <p>{frontmatter.description}</p>
         <slot />
-        <EditThisPage file={frontmatter.file} />
+        <EditThisPage lang={lang} file={frontmatter.file} />
       </div>
-      <PreviousNextPage />
+      <PreviousNextPage lang={lang} />
     </div>
   </div>
-  <OnThisPage headings={headings} />
+  <OnThisPage lang={lang} headings={headings} />
 </Base>
 
 <style is:global>
