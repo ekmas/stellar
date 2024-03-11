@@ -1,6 +1,6 @@
 ---
-import { SIDEBAR } from '@/config'
-import { type LanguageKeys } from '@/i18n'
+import { SIDEBAR } from '@/i18n/sidebar'
+import { type LanguageKeys } from '@/i18n/ui'
 
 const langFromURL = Astro.url.pathname.split('/')[1] || 'en'
 const lang: LanguageKeys = langFromURL as LanguageKeys

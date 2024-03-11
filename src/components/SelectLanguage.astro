@@ -1,5 +1,5 @@
 ---
-import { LANGUAGES, type LanguageKeys } from '@/i18n'
+import { LANGUAGES, type LanguageKeys } from '@/i18n/ui'
 
 const langFromURL = Astro.url.pathname.split('/')[1] || 'en'
 const lang: LanguageKeys = langFromURL as LanguageKeys
@@ -66,7 +66,7 @@ const lang: LanguageKeys = langFromURL as LanguageKeys
 </div>
 
 <script>
-  import { type LanguageKeys } from '@/i18n'
+  import { type LanguageKeys } from '@/i18n/ui'
 
   const selectSetup = () => {
     const langFromURL = location.pathname.split('/')[1] || 'en'
