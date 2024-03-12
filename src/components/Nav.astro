@@ -1,8 +1,12 @@
 ---
 import { GITHUB_REPO_URL, GET_STARTED_LINK, PROJECT_NAME } from '@/config'
+import { type LanguageKeys, NAV } from '@/i18n/ui'
+import { type MarkdownInstance } from 'astro'
+import { type MarkdownRecord } from '@/types'
+
 import ThemeSwitcher from '@/components/ThemeSwitcher.astro'
 import SelectLanguage from '@/components/SelectLanguage.astro'
-import { type LanguageKeys, NAV } from '@/i18n/ui'
+import Search from '@/components/Search.tsx'
 
 const langFromURL = Astro.url.pathname.split('/')[1] || 'en'
 const lang: LanguageKeys = langFromURL as LanguageKeys
@@ -13,6 +17,28 @@ const isLandingPage = Astro.url.pathname === `/${lang}` || isEnglishLandingPage
 const docsLink = isEnglishLandingPage
   ? `/en${GET_STARTED_LINK}`
   : `/${lang}${GET_STARTED_LINK}`
+
+const getDocs = async () => {
+  let docs: null | MarkdownInstance<any>[] = null
+
+  switch (lang) {
+    case 'en':
+      docs = await Astro.glob(`../pages/en/**`)
+      break
+    case 'sr':
+      docs = await Astro.glob(`../pages/sr/**`)
+      break
+  }
+  return docs.map((doc: MarkdownInstance<any>) => {
+    return {
+      title: doc.frontmatter.title,
+      description: doc.frontmatter.description,
+      url: doc.url,
+    } as MarkdownRecord
+  })
+}
+
+const docs: MarkdownRecord[] = await getDocs()
 ---
 
 <nav
@@ -26,6 +52,8 @@ const docsLink = isEnglishLandingPage
       >
         <h2 class="text-2xl font-bold">{PROJECT_NAME}</h2>
       </a>
+
+      <Search docs={docs} client:only />
     </div>
 
     <div class="flex items-center text-lg">
