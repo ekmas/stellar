@@ -10,7 +10,8 @@ body::-webkit-scrollbar {
 }
 
 .sidebar::-webkit-scrollbar,
-.on-this-page::-webkit-scrollbar {
+.on-this-page::-webkit-scrollbar,
+.search-list::-webkit-scrollbar {
   width: 8px;
 }
 
@@ -23,20 +24,23 @@ body::-webkit-scrollbar-track {
 }
 
 .sidebar::-webkit-scrollbar-track,
-.on-this-page::-webkit-scrollbar-track {
+.on-this-page::-webkit-scrollbar-track,
+.search-list::-webkit-scrollbar-track {
   background: transparent;
   border-radius: 10px;
 }
 
 html.dark body::-webkit-scrollbar-thumb,
 html.dark .sidebar::-webkit-scrollbar-thumb,
-html.dark .on-this-page::-webkit-scrollbar-thumb {
+html.dark .on-this-page::-webkit-scrollbar-thumb,
+html.dark .search-list::-webkit-scrollbar-thumb {
   background: var(--dark-sb-thumb-color);
 }
 
 body::-webkit-scrollbar-thumb,
 .sidebar::-webkit-scrollbar-thumb,
-.on-this-page::-webkit-scrollbar-thumb {
+.on-this-page::-webkit-scrollbar-thumb,
+.search-list::-webkit-scrollbar-thumb {
   background: var(--sb-thumb-color);
   border-radius: 10px;
 }
@@ -44,13 +48,15 @@ body::-webkit-scrollbar-thumb,
 @supports not selector(::-webkit-scrollbar) {
   html.dark body,
   html.dark .sidebar,
-  html.dark .on-this-page {
+  html.dark .on-this-page,
+  html.dark .search-list {
     scrollbar-color: var(--dark-sb-thumb-color) var(--dark-sb-track-color);
   }
 
   .sidebar,
   body,
-  .on-this-page {
+  .on-this-page,
+  .search-list {
     scrollbar-color: var(--sb-thumb-color) var(--sb-track-color);
   }
 }
