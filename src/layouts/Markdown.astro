@@ -4,10 +4,10 @@ import { type MarkdownHeading } from 'astro'
 import type { LanguageKeys } from '@/i18n/ui'
 
 import Base from '@/layouts/Base.astro'
-import Sidebar from '@/components/Sidebar.astro'
-import OnThisPage from '@/components/OnThisPage.astro'
-import PreviousNextPage from '@/components/PreviousNextPage.astro'
-import EditThisPage from '@/components/EditThisPage.astro'
+import Sidebar from '@/components/navigation/Sidebar.astro'
+import OnThisPage from '@/components/navigation/OnThisPage.astro'
+import PreviousNextPage from '@/components/navigation/PreviousNextPage.astro'
+import EditThisPage from '@/components/navigation/EditThisPage.astro'
 
 const langFromURL = Astro.url.pathname.split('/')[1] || 'en'
 const lang: LanguageKeys = langFromURL as LanguageKeys

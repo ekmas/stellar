@@ -2,7 +2,7 @@ import { useState, useRef, type ChangeEvent } from 'react'
 import Fuse, { type FuseResult } from 'fuse.js'
 import clsx from 'clsx'
 import { type MarkdownRecord } from '@/types'
-import SearchResults from '@/components/SearchResults'
+import SearchResults from '@/components/navigation/SearchResults'
 import { type LanguageKeys, SEARCH } from '@/i18n/ui'
 
 export default function Search({

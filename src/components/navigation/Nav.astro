@@ -4,9 +4,9 @@ import { type LanguageKeys, NAV } from '@/i18n/ui'
 import { type MarkdownInstance } from 'astro'
 import { type MarkdownRecord } from '@/types'
 
-import ThemeSwitcher from '@/components/ThemeSwitcher.astro'
-import SelectLanguage from '@/components/SelectLanguage.astro'
-import Search from '@/components/Search.tsx'
+import ThemeSwitcher from '@/components/navigation/ThemeSwitcher.astro'
+import SelectLanguage from '@/components/navigation/SelectLanguage.astro'
+import Search from '@/components/navigation/Search'
 
 const langFromURL = Astro.url.pathname.split('/')[1] || 'en'
 const lang: LanguageKeys = langFromURL as LanguageKeys
@@ -23,10 +23,10 @@ const getDocs = async () => {
 
   switch (lang) {
     case 'en':
-      docs = await Astro.glob(`../pages/en/**`)
+      docs = await Astro.glob(`@/pages/en/**`)
       break
     case 'sr':
-      docs = await Astro.glob(`../pages/sr/**`)
+      docs = await Astro.glob(`@/pages/sr/**`)
       break
   }
   return docs.map((doc: MarkdownInstance<any>) => {
