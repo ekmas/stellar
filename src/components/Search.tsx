@@ -1,17 +1,20 @@
-import { useState, useRef, useEffect, type ChangeEvent } from 'react'
+import { useState, useRef, type ChangeEvent } from 'react'
 import Fuse, { type FuseResult } from 'fuse.js'
 import clsx from 'clsx'
 import { type MarkdownRecord } from '@/types'
 import SearchResults from '@/components/SearchResults'
+import { type LanguageKeys, SEARCH } from '@/i18n/ui'
 
-export default function Search({ docs }: { docs: MarkdownRecord[] }) {
+export default function Search({
+  docs,
+  lang,
+}: {
+  docs: MarkdownRecord[]
+  lang: LanguageKeys
+}) {
   const [isOverlayActive, setIsOverlayActive] = useState(false)
   const [matchedItems, setMatchedItems] = useState<MarkdownRecord[]>([])
   const [message, setMessage] = useState<string | null>('')
-
-  useEffect(() => {
-    console.log(matchedItems)
-  }, [matchedItems])
 
   const overlayRef = useRef(null)
 
@@ -35,14 +38,14 @@ export default function Search({ docs }: { docs: MarkdownRecord[] }) {
       setMatchedItems([])
       if (message) setMessage(null)
     } else if (inputValue.length > 0 && inputValue.length < 3) {
-      setMessage('Keep typing...')
+      setMessage(SEARCH[lang].keepTyping)
     } else {
       const searchResult: FuseResult<MarkdownRecord>[] = fuse.search(inputValue)
       const items: MarkdownRecord[] = searchResult.map((result) => result.item)
       setMatchedItems(items)
 
       if (items.length === 0) {
-        setMessage('No results')
+        setMessage(SEARCH[lang].noResults)
       } else {
         setMessage(null)
       }
@@ -72,7 +75,7 @@ export default function Search({ docs }: { docs: MarkdownRecord[] }) {
           ></path>
         </svg>
 
-        <p>Search</p>
+        <p>{SEARCH[lang].search}</p>
       </button>
 
       <div
@@ -86,12 +89,20 @@ export default function Search({ docs }: { docs: MarkdownRecord[] }) {
         )}
       >
         <div className="mx-auto flex h-full w-[700px] flex-col rounded-xl border border-black/50 bg-neutral-100 p-10 dark:border-white/50 dark:bg-neutral-950">
-          <input
-            onChange={handleInputChange}
-            className="w-full rounded-md bg-transparent p-[10px] px-5 text-xl outline outline-1 outline-black/20 transition-[outline] focus:outline-black/50 dark:outline-white/20 dark:focus:outline-white/50"
-            placeholder="Search"
-            type="text"
-          />
+          <div className="h-[82px]">
+            <input
+              onChange={handleInputChange}
+              className="w-full rounded-md bg-transparent p-[10px] px-5 text-xl outline outline-1 outline-black/20 transition-[outline] focus:outline-black/50 dark:outline-white/20 dark:focus:outline-white/50"
+              placeholder={SEARCH[lang].search}
+              type="text"
+            />
+
+            {matchedItems.length > 0 && !message && (
+              <p className="mt-[10px]">
+                {matchedItems.length} {SEARCH[lang].results}
+              </p>
+            )}
+          </div>
 
           <SearchResults message={message} matchedItems={matchedItems} />
         </div>
