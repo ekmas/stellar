@@ -53,7 +53,7 @@ const docs: MarkdownRecord[] = await getDocs()
         <h2 class="text-2xl font-bold">{PROJECT_NAME}</h2>
       </a>
 
-      <Search docs={docs} client:only />
+      <Search docs={docs} lang={lang} client:only />
     </div>
 
     <div class="flex items-center text-lg">
