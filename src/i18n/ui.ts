@@ -15,21 +15,6 @@ export type LandingPageObj = {
   githubBtnText: string
 }
 
-export type NavObj = {
-  documentation: string
-}
-
-export type OnThisPage = {
-  onThisPage: string
-  scrollToTop: string
-}
-
-export type Misc = {
-  editThisPage: string
-  previous: string
-  next: string
-}
-
 export const LANDING_PAGE: LanguageObject<LandingPageObj> = {
   en: {
     description: 'Modern type-safe documentation theme for Astro.',
@@ -43,7 +28,9 @@ export const LANDING_PAGE: LanguageObject<LandingPageObj> = {
   },
 } as const
 
-export const NAV: LanguageObject<NavObj> = {
+export const NAV: LanguageObject<{
+  documentation: string
+}> = {
   en: {
     documentation: 'Docs',
   },
@@ -52,7 +39,10 @@ export const NAV: LanguageObject<NavObj> = {
   },
 } as const
 
-export const ON_THIS_PAGE: LanguageObject<OnThisPage> = {
+export const ON_THIS_PAGE: LanguageObject<{
+  onThisPage: string
+  scrollToTop: string
+}> = {
   en: {
     onThisPage: 'On this page',
     scrollToTop: 'Scroll to top',
@@ -63,7 +53,11 @@ export const ON_THIS_PAGE: LanguageObject<OnThisPage> = {
   },
 }
 
-export const MISC: LanguageObject<Misc> = {
+export const MISC: LanguageObject<{
+  editThisPage: string
+  previous: string
+  next: string
+}> = {
   en: {
     editThisPage: 'Edit this page',
     next: 'Next',
@@ -73,5 +67,25 @@ export const MISC: LanguageObject<Misc> = {
     editThisPage: 'Uredi ovu stranicu',
     next: 'Sledeće',
     previous: 'Prethodno',
+  },
+}
+
+export const SEARCH: LanguageObject<{
+  search: string
+  keepTyping: string
+  noResults: string
+  results: string
+}> = {
+  en: {
+    search: 'Search',
+    keepTyping: 'Keep typing...',
+    noResults: 'No results',
+    results: 'Results',
+  },
+  sr: {
+    search: 'Pretraži',
+    keepTyping: 'Nastavi da kucaš...',
+    noResults: 'Nema rezultata',
+    results: 'Rezultata',
   },
 }
