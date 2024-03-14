@@ -46,6 +46,7 @@
 
     const isDark = element.classList.contains('dark')
     localStorage.setItem('theme', isDark ? 'dark' : 'light')
+    element.setAttribute('data-theme', isDark ? 'github-dark' : 'github-light')
   }
 
   document!

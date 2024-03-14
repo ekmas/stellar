@@ -24,7 +24,7 @@ const { frontmatter } = Astro.props as {
   }
 </style>
 
-<html>
+<html data-theme="github-light">
   <head>
     <meta charset="utf-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -56,8 +56,10 @@ const { frontmatter } = Astro.props as {
         window.matchMedia('(prefers-color-scheme: dark)').matches)
     ) {
       document.documentElement.classList.add('dark')
+      document.documentElement.setAttribute('data-theme', 'github-dark')
     } else {
       document.documentElement.classList.remove('dark')
+      document.documentElement.setAttribute('data-theme', 'github-light')
     }
 
     setTimeout(() => {
