@@ -88,7 +88,12 @@ export default function Search({
             : 'invisible bg-transparent opacity-0',
         )}
       >
-        <div className="mx-auto flex h-full w-[700px] flex-col rounded-xl border border-black/50 bg-neutral-100 p-10 dark:border-white/50 dark:bg-neutral-950">
+        <div
+          className={clsx(
+            'mx-auto flex h-full w-[700px] flex-col rounded-xl border border-black/50 bg-neutral-100 p-10 transition-all duration-300 dark:border-white/50 dark:bg-neutral-950',
+            isOverlayActive ? 'scale-100' : 'scale-[0.8]',
+          )}
+        >
           <div className="h-[82px]">
             <input
               onChange={handleInputChange}
