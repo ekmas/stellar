@@ -1,0 +1,183 @@
+---
+import Search from '@/components/navigation/Search'
+import { type MarkdownInstance } from 'astro'
+import { type MarkdownRecord } from '@/types'
+import type { LanguageKeys } from '@/i18n/ui'
+import { SIDEBAR } from '@/i18n/sidebar'
+import Accordion from '@/components/Accordion.astro'
+import SidebarLink from '@/components/navigation/SidebarLink.astro'
+import { GITHUB_REPO_URL } from '@/config'
+import ThemeSwitcher from '@/components/navigation/ThemeSwitcher.astro'
+
+const langFromURL = Astro.url.pathname.split('/')[1] || 'en'
+const lang: LanguageKeys = langFromURL as LanguageKeys
+
+const getDocs = async () => {
+  let docs: null | MarkdownInstance<any>[] = null
+
+  switch (lang) {
+    case 'en':
+      docs = await Astro.glob(`@/pages/en/**`)
+      break
+    case 'sr':
+      docs = await Astro.glob(`@/pages/sr/**`)
+      break
+  }
+  return docs.map((doc: MarkdownInstance<any>) => {
+    return {
+      title: doc.frontmatter.title,
+      description: doc.frontmatter.description,
+      url: doc.url,
+    } as MarkdownRecord
+  })
+}
+
+const docs: MarkdownRecord[] = await getDocs()
+---
+
+<button data-active="false" id="hamburger-btn" class="ml-6 hidden w800:inline">
+  <svg
+    class="h-6 w-6"
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 24 24"
+    fill="none"
+    id="hamburger"
+  >
+    <path
+      d="M20 7L4 7"
+      class="stroke-black/80 dark:stroke-white/80"
+      stroke-width="1.5"
+      stroke-linecap="round"></path>
+    <path
+      d="M20 12L4 12"
+      class="stroke-black/80 dark:stroke-white/80"
+      stroke-width="1.5"
+      stroke-linecap="round"></path>
+    <path
+      d="M20 17L4 17"
+      class="stroke-black/80 dark:stroke-white/80"
+      stroke-width="1.5"
+      stroke-linecap="round"></path>
+  </svg>
+
+  <svg
+    class="hidden h-6 w-6"
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="-0.5 0 25 25"
+    fill="none"
+    id="close"
+  >
+    <path
+      d="M3 21.32L21 3.32001"
+      class="stroke-black/80 dark:stroke-white/80"
+      stroke-width="1.5"
+      stroke-linecap="round"
+      stroke-linejoin="round"></path>
+    <path
+      d="M3 3.32001L21 21.32"
+      class="stroke-black/80 dark:stroke-white/80"
+      stroke-width="1.5"
+      stroke-linecap="round"
+      stroke-linejoin="round"></path>
+  </svg>
+</button>
+
+<div
+  id="mobile-hamburger"
+  class="fixed left-0 top-20 z-50 hidden h-[calc(100dvh-80px)] w-full bg-neutral-100 bg-opacity-95 bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(120,119,198,0.5),rgba(0,0,0,0))] py-8 transition-colors duration-[inherit] dark:bg-neutral-950 dark:bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(120,119,198,0.3),rgba(255,255,255,0))]"
+>
+  <div class="w500:px-5 w-full px-8">
+    <div class="flex h-11 w-full items-center gap-10 w400:justify-between">
+      <Search docs={docs} lang={lang} client:only />
+
+      <a class="w500:inline hidden" target="_blank" href={GITHUB_REPO_URL}>
+        <svg
+          class="h-6 w-6"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 1024 1024"
+          ><path
+            class="fill-black transition-colors dark:fill-white"
+            d="m1024 525c0 225.9-146.6 417.9-348.8 485.8-25.6 5.1-35.2-10.9-35.2-24.4 0-17.2.6-72.3.6-140.8 0-48-16-78.7-34.5-94.7 113.9-12.8 233.6-56.3 233.6-252.8 0-56.3-19.9-101.7-52.5-137.6 5.1-12.8 23-65.3-5.1-135.7 0 0-42.9-14-140.8 52.5-41-11.5-84.5-17.3-128-17.3s-87.1 5.8-128 17.3c-97.9-65.9-140.8-52.5-140.8-52.5-28.2 70.4-10.3 122.9-5.1 135.7-32.7 35.9-52.5 81.9-52.5 137.6 0 195.9 119 240 232.9 252.8-14.7 12.8-28.1 35.2-32.6 68.5-29.4 13.4-103 35.2-149.1-42.2-9.6-15.4-38.4-53.2-78.7-52.5-42.9.6-17.3 24.3.6 33.9 21.8 12.2 46.7 57.6 52.5 72.3 10.2 28.8 43.5 83.9 172.1 60.2 0 42.9.7 83.2.7 95.3 0 13.5-9.6 28.8-35.2 24.4-203.5-67.9-350.1-259.2-350.1-485.8 0-282.9 229.1-512 512-512s512 229.1 512 512z"
+            fill-rule="evenodd"></path></svg
+        >
+      </a>
+
+      <div class="w500:block hidden">
+        <ThemeSwitcher />
+      </div>
+    </div>
+
+    <hr
+      class="my-4 h-px w-full border-0 bg-black/20 outline-none dark:bg-white/20"
+    />
+
+    <aside class="sidebar h-[calc(100dvh-188px)] w-full overflow-y-auto">
+      {
+        Object.entries(SIDEBAR[lang]).map(([key, value]) => {
+          if (typeof value === 'string') {
+            return <SidebarLink href={`${lang}/${key}`} text={value} />
+          } else {
+            const sectionName = value.sectionName
+            const sectionKey = key
+            return (
+              <Accordion title={sectionName} key={sectionKey}>
+                {Object.entries(value.sectionItems).map(([key, value]) => {
+                  if (typeof value === 'string') {
+                    return (
+                      <SidebarLink
+                        href={`${lang}/${sectionKey}/${key}`}
+                        text={value}
+                      />
+                    )
+                  } else {
+                    const subsectionName = value.subsectionName
+                    const subsectionKey = key
+                    return (
+                      <Accordion title={subsectionName} key={subsectionKey}>
+                        {Object.entries(value.subsectionItems).map(
+                          ([key, value]) => {
+                            return (
+                              <SidebarLink
+                                href={`${lang}/${sectionKey}/${subsectionKey}/${key}`}
+                                text={value}
+                              />
+                            )
+                          }
+                        )}
+                      </Accordion>
+                    )
+                  }
+                })}
+              </Accordion>
+            )
+          }
+        })
+      }
+    </aside>
+  </div>
+</div>
+
+<script>
+  const init = () => {
+    const btn = document.querySelector('#hamburger-btn')
+    const mobileHamburger = document.querySelector('#mobile-hamburger')
+
+    const hamburgerIcon = document.querySelector('#hamburger-btn svg#hamburger')
+    const closeIcon = document.querySelector('#hamburger-btn svg#close')
+
+    btn!.addEventListener('click', () => {
+      const isActive = btn?.getAttribute('data-active') === 'true'
+
+      btn?.setAttribute('data-active', isActive ? 'false' : 'true')
+
+      document.body.style.overflow = isActive ? 'unset' : 'hidden'
+
+      mobileHamburger?.classList.toggle('hidden')
+      hamburgerIcon?.classList.toggle('hidden')
+      closeIcon?.classList.toggle('hidden')
+    })
+  }
+
+  init()
+  document.addEventListener('astro:after-swap', init)
+</script>
