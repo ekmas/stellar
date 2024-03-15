@@ -20,13 +20,16 @@ const { frontmatter, headings } = Astro.props as {
 
 <Base frontmatter={frontmatter} lang={lang}>
   <Sidebar lang={lang} />
-  <div class="ml-[300px] mr-[500px]">
-    <div class="mx-auto w-[800px]">
+  <div
+    class="ml-[300px] mr-[500px] w1600:mr-[300px] w1200:mx-[250px] w1100:ml-[250px] w1100:mr-0 w800:ml-0"
+  >
+    <div class="mx-auto w-[800px] w1400:w-full">
+      <OnThisPage lang={lang} headings={headings} />
       <div
         id="markdown"
-        class="prose w-full max-w-full p-10 text-black/90 prose-headings:scroll-mt-28 prose-headings:text-black prose-a:text-black prose-blockquote:text-black prose-strong:text-black prose-ol:text-black prose-ul:text-black prose-table:text-black prose-tr:text-black prose-td:text-black prose-hr:bg-transparent dark:text-white/90 dark:prose-headings:text-white dark:prose-a:text-white dark:prose-blockquote:text-white dark:prose-strong:text-white dark:prose-code:text-white dark:prose-ol:text-white dark:prose-ul:text-white dark:prose-table:text-white dark:prose-tr:text-white dark:prose-td:text-white"
+        class="w500:p-5 prose w-full max-w-full break-words p-10 text-black/90 w1200:prose-sm prose-headings:scroll-mt-28 prose-headings:text-black prose-a:text-black prose-blockquote:text-black prose-strong:text-black prose-ol:text-black prose-ul:text-black prose-table:text-black prose-tr:text-black prose-td:text-black prose-hr:bg-transparent dark:text-white/90 dark:prose-headings:text-white dark:prose-a:text-white dark:prose-blockquote:text-white dark:prose-strong:text-white dark:prose-code:text-white dark:prose-ol:text-white dark:prose-ul:text-white dark:prose-table:text-white dark:prose-tr:text-white dark:prose-td:text-white w800:p-8"
       >
-        <h1 id="_top">{frontmatter.title}</h1>
+        <h1 class="w500:text-2xl" id="_top">{frontmatter.title}</h1>
         <p>{frontmatter.description}</p>
         <slot />
         <EditThisPage lang={lang} file={frontmatter.file} />
@@ -34,5 +37,4 @@ const { frontmatter, headings } = Astro.props as {
       <PreviousNextPage lang={lang} />
     </div>
   </div>
-  <OnThisPage lang={lang} headings={headings} />
 </Base>

@@ -7,6 +7,7 @@ import { type MarkdownRecord } from '@/types'
 import ThemeSwitcher from '@/components/navigation/ThemeSwitcher.astro'
 import SelectLanguage from '@/components/navigation/SelectLanguage.astro'
 import Search from '@/components/navigation/Search'
+import MobileNav from '@/components/navigation/MobileNav.astro'
 
 const langFromURL = Astro.url.pathname.split('/')[1] || 'en'
 const lang: LanguageKeys = langFromURL as LanguageKeys
@@ -42,29 +43,37 @@ const docs: MarkdownRecord[] = await getDocs()
 ---
 
 <nav
-  class="fixed left-0 top-0 z-10 h-20 w-full border-b border-black/20 bg-opacity-50 backdrop-blur-md backdrop-filter dark:border-white/20"
+  class="fixed left-0 top-0 z-[60] h-20 w-full border-b border-black/20 bg-opacity-50 backdrop-blur-md backdrop-filter dark:border-white/20"
 >
-  <div class="mx-auto flex h-20 w-full items-center justify-between px-8 py-5">
+  <div
+    class="w500:px-5 mx-auto flex h-20 w-full items-center justify-between px-8 py-5"
+  >
     <div class="flex items-center">
       <a
-        class="transition-opacity hover:opacity-70"
+        class="mr-10 inline-block transition-opacity hover:opacity-70 w800:mr-0"
         href={lang === 'en' ? '/' : `/${lang}`}
       >
-        <h2 class="text-2xl font-bold">{PROJECT_NAME}</h2>
+        <h2 class="w500:text-xl text-2xl font-bold">{PROJECT_NAME}</h2>
       </a>
 
-      <Search docs={docs} lang={lang} client:only />
+      <div class="z-20 w800:hidden">
+        <Search docs={docs} lang={lang} client:only />
+      </div>
     </div>
 
     <div class="flex items-center text-lg">
       {
         isLandingPage && (
-          <a class="mr-10 hover:opacity-70" href={docsLink}>
+          <a class="mr-10 hover:opacity-70 w800:hidden" href={docsLink}>
             {NAV[lang].documentation}
           </a>
         )
       }
-      <a class="mr-10 hover:opacity-70" target="_blank" href={GITHUB_REPO_URL}>
+      <a
+        class="w500:hidden mr-10 hover:opacity-70"
+        target="_blank"
+        href={GITHUB_REPO_URL}
+      >
         <svg
           class="h-6 w-6"
           xmlns="http://www.w3.org/2000/svg"
@@ -75,8 +84,11 @@ const docs: MarkdownRecord[] = await getDocs()
             fill-rule="evenodd"></path></svg
         >
       </a>
-      <ThemeSwitcher />
+      <div class="w500:hidden">
+        <ThemeSwitcher />
+      </div>
       <SelectLanguage />
+      <MobileNav />
     </div>
   </div>
 </nav>

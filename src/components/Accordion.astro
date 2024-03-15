@@ -10,7 +10,9 @@ const { title, key } = Astro.props as { title: string; key: string }
     aria-expanded="false"
     aria-controls={`${key} accordion menu content`}
   >
-    {title}
+    <span class="w-[95%] overflow-hidden overflow-ellipsis whitespace-nowrap"
+      >{title}</span
+    >
 
     <svg
       aria-hidden="true"
@@ -40,17 +42,17 @@ const { title, key } = Astro.props as { title: string; key: string }
 <script>
   function accordionSetup() {
     const accordionMenus = document.querySelectorAll(
-      '.accordion',
+      '.accordion'
     ) as NodeListOf<HTMLElement>
     accordionMenus.forEach((accordionMenu) => {
       const accordionButton = accordionMenu.querySelector(
-        '.accordion__button',
+        '.accordion__button'
       ) as HTMLElement
       const accordionChevron = accordionMenu.querySelector(
-        '.accordion__chevron',
+        '.accordion__chevron'
       ) as HTMLElement
       const accordionContent = accordionMenu.querySelector(
-        '.accordion__content',
+        '.accordion__content'
       ) as HTMLElement
 
       const openAccordion = () => {

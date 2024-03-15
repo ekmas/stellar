@@ -48,16 +48,19 @@ const getLinkIndex = () => {
 const index = getLinkIndex() as number
 ---
 
-<div class="mb-20 grid grid-cols-2 gap-5 px-10">
+<div
+  class="w500:px-5 w500:grid-cols-1 mb-20 grid grid-cols-2 gap-5 px-10 w800:px-8"
+>
   <div>
     {
       index !== 0 && (
         <a
+          title={flattenedLinksArray[index - 1].t}
           class="flex items-center rounded-md border border-black/50 p-[10px] px-5 no-underline transition-[background-color] hover:border-black dark:border-white/50 dark:hover:border-white"
           href={Astro.url.origin + '/' + flattenedLinksArray[index - 1].link}
         >
           <svg
-            class="mr-4 h-8 w-8"
+            class="w600:hidden w500:inline mr-4 h-8 w-8 flex-shrink-0"
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"
             fill="none"
@@ -71,9 +74,11 @@ const index = getLinkIndex() as number
             />
           </svg>
 
-          <div>
+          <div class="block max-w-full overflow-hidden overflow-ellipsis whitespace-nowrap">
             <p class="text-sm opacity-80">{MISC[lang].previous}</p>
-            <span class="text-2xl">{flattenedLinksArray[index - 1].t}</span>
+            <span class="w900:text-xl text-2xl">
+              {flattenedLinksArray[index - 1].t}
+            </span>
           </div>
         </a>
       )
@@ -83,16 +88,19 @@ const index = getLinkIndex() as number
     {
       index !== flattenedLinksArray.length - 1 && (
         <a
+          title={flattenedLinksArray[index + 1].t}
           class="flex items-center justify-end rounded-md border border-black/50 p-[10px] px-5 no-underline transition-[background-color] hover:border-black dark:border-white/50 dark:hover:border-white"
           href={Astro.url.origin + '/' + flattenedLinksArray[index + 1].link}
         >
-          <div>
+          <div class="block max-w-full overflow-hidden overflow-ellipsis whitespace-nowrap">
             <p class="text-right text-sm opacity-80">{MISC[lang].next}</p>
-            <span class="text-2xl">{flattenedLinksArray[index + 1].t}</span>
+            <span class="w900:text-xl text-2xl">
+              {flattenedLinksArray[index + 1].t}
+            </span>
           </div>
 
           <svg
-            class="ml-4 h-8 w-8"
+            class="w600:hidden w500:inline ml-4 h-8 w-8 flex-shrink-0"
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"
             fill="none"

@@ -9,16 +9,16 @@ const { headings, lang } = Astro.props as {
 ---
 
 <div
-  class="on-this-page fixed left-[calc(100%-500px)] top-20 h-[calc(100dvh-80px)] w-[300px] overflow-y-auto border-l border-l-black/20 p-5 dark:border-l-white/20"
+  class="on-this-page fixed left-[calc(100%-500px)] top-20 h-[calc(100dvh-80px)] w-[300px] overflow-y-auto border-l border-l-black/20 p-5 dark:border-l-white/20 w1600:left-[calc(100%-300px)] w1200:left-[calc(100%-250px)] w1200:w-[250px] w1100:hidden"
 >
-  <h2 class="text-xl">{ON_THIS_PAGE[lang].onThisPage}</h2>
+  <h2 class="text-xl w1200:text-lg">{ON_THIS_PAGE[lang].onThisPage}</h2>
 
   <div class="my-5 text-sm">
     <a
-      class="mb-1 flex w-[250px] items-center justify-between rounded-lg p-1.5 pl-3 text-base text-black/80 transition-colors hover:bg-black/10 hover:text-black dark:text-white/80 dark:hover:bg-white/10 dark:hover:text-white"
+      class="mb-1 flex w-[250px] items-center justify-between rounded-lg p-1.5 pl-3 text-base text-black/80 transition-colors hover:bg-black/10 hover:text-black dark:text-white/80 dark:hover:bg-white/10 dark:hover:text-white w1200:w-full"
       href="#_top"
     >
-      <span>{ON_THIS_PAGE[lang].scrollToTop}</span>
+      <span class="w1200:text-sm">{ON_THIS_PAGE[lang].scrollToTop}</span>
 
       <svg
         class="h-5 w-5"
@@ -42,7 +42,9 @@ const { headings, lang } = Astro.props as {
             style={{ paddingLeft: `${(heading.depth - 0.5) * 8}` + 'px' }}
             href={`#${heading.slug}`}
           >
-            {heading.text}
+            <span class="block w-full overflow-hidden overflow-ellipsis whitespace-nowrap">
+              {heading.text}
+            </span>
           </a>
         )
       })
@@ -54,7 +56,7 @@ const { headings, lang } = Astro.props as {
   const observer = () => {
     document
       .querySelectorAll(
-        "#markdown h1:not([id='_top']), #markdown h2:not([id='_top']), #markdown h3:not([id='_top']), #markdown h4:not([id='_top'])",
+        "#markdown h1:not([id='_top']), #markdown h2:not([id='_top']), #markdown h3:not([id='_top']), #markdown h4:not([id='_top'])"
       )
       .forEach((h) => {
         new IntersectionObserver(
@@ -63,15 +65,15 @@ const { headings, lang } = Astro.props as {
               const id = entry.target.id
 
               const tocItem = Array.from(
-                document.querySelectorAll(`a[href="#${id}"]`),
+                document.querySelectorAll(`a[href="#${id}"]`)
               ).at(-1)
               if (!tocItem) return
 
               if (entry.isIntersecting) {
                 const currentActiveElements = Array.from(
                   document.querySelectorAll(
-                    `[data-current-active-tab-content-item="true"]`,
-                  ),
+                    `[data-current-active-tab-content-item="true"]`
+                  )
                 )
 
                 if (currentActiveElements.length) {
@@ -79,7 +81,7 @@ const { headings, lang } = Astro.props as {
                     el.classList.remove(
                       'font-medium',
                       'bg-black/10',
-                      'dark:bg-white/10',
+                      'dark:bg-white/10'
                     )
                     el.removeAttribute('data-current-active-tab-content-item')
                   }
@@ -88,11 +90,11 @@ const { headings, lang } = Astro.props as {
                 tocItem.classList.add(
                   'font-medium',
                   'bg-black/10',
-                  'dark:bg-white/10',
+                  'dark:bg-white/10'
                 )
                 tocItem.setAttribute(
                   'data-current-active-tab-content-item',
-                  true,
+                  true
                 )
               }
             })
@@ -100,7 +102,7 @@ const { headings, lang } = Astro.props as {
           {
             rootMargin: '-100px 0% -66%',
             threshold: 1,
-          },
+          }
         ).observe(h)
       })
   }
