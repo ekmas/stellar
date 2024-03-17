@@ -1,14 +1,21 @@
+import { type LanguageKeys } from '@/i18n/ui'
+
 export const PROJECT_NAME = 'Stellar'
-// used for landing page and nav
+// used for landing page cta button and nav
 
 export const SITE = {
   title: 'Stellar',
   description: 'Modern type-safe documentation theme for Astro.',
-  defaultLanguage: 'en_US',
+  defaultLanguage: 'en_US', // don't mistaken this with DEFAULT_LANGUAGE_CODE below, this is used only for meta tags
 }
+// used for meta tags
+
+export const DEFAULT_LANGUAGE_CODE: LanguageKeys = 'en'
+// when user is on '/' path, this will be the default language
 
 export const TWITTER_USERNAME = null
 // enter your twitter username if you have it
+
 export const GITHUB_REPO_URL = 'https://github.com/ekmas/stellar'
 
 export const GITHUB_EDIT_URL = GITHUB_REPO_URL + '/edit/main/src/pages/'

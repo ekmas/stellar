@@ -6,10 +6,10 @@ import type { LanguageKeys } from '@/i18n/ui'
 import { SIDEBAR } from '@/i18n/sidebar'
 import Accordion from '@/components/Accordion.astro'
 import SidebarLink from '@/components/navigation/SidebarLink.astro'
-import { GITHUB_REPO_URL } from '@/config'
+import { GITHUB_REPO_URL, DEFAULT_LANGUAGE_CODE } from '@/config'
 import ThemeSwitcher from '@/components/navigation/ThemeSwitcher.astro'
 
-const langFromURL = Astro.url.pathname.split('/')[1] || 'en'
+const langFromURL = Astro.url.pathname.split('/')[1] || DEFAULT_LANGUAGE_CODE
 const lang: LanguageKeys = langFromURL as LanguageKeys
 
 const getDocs = async () => {
@@ -142,7 +142,7 @@ const docs: MarkdownRecord[] = await getDocs()
                                 text={value}
                               />
                             )
-                          },
+                          }
                         )}
                       </Accordion>
                     )

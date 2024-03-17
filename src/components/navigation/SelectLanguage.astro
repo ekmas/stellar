@@ -1,7 +1,8 @@
 ---
 import { LANGUAGES, type LanguageKeys } from '@/i18n/ui'
+import { DEFAULT_LANGUAGE_CODE } from '@/config'
 
-const langFromURL = Astro.url.pathname.split('/')[1] || 'en'
+const langFromURL = Astro.url.pathname.split('/')[1] || DEFAULT_LANGUAGE_CODE
 const lang: LanguageKeys = langFromURL as LanguageKeys
 ---
 
@@ -80,9 +81,10 @@ const lang: LanguageKeys = langFromURL as LanguageKeys
 
 <script>
   import { type LanguageKeys } from '@/i18n/ui'
+  import { DEFAULT_LANGUAGE_CODE } from '@/config'
 
   const selectSetup = () => {
-    const langFromURL = location.pathname.split('/')[1] || 'en'
+    const langFromURL = location.pathname.split('/')[1] || DEFAULT_LANGUAGE_CODE
     const lang: LanguageKeys = langFromURL as LanguageKeys
 
     const selectBtn = document.querySelector('#select-btn')
@@ -90,7 +92,7 @@ const lang: LanguageKeys = langFromURL as LanguageKeys
     const languageDropdown = document.querySelector('#language-dropdown')
 
     const languageBtns = document.querySelectorAll(
-      '#language-dropdown > button',
+      '#language-dropdown > button'
     )
 
     selectBtn!.addEventListener('click', () => {

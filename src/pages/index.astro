@@ -1,6 +1,7 @@
 ---
+import { DEFAULT_LANGUAGE_CODE } from '@/config'
 import LandingPage from '@/components/LandingPage.astro'
 import { LANDING_PAGE } from '@/i18n/ui'
 ---
 
-<LandingPage t={LANDING_PAGE.en} />
+<LandingPage t={LANDING_PAGE[DEFAULT_LANGUAGE_CODE]} />

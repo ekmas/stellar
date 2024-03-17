@@ -1,11 +1,16 @@
 ---
 import Base from '@/layouts/Base.astro'
-import { GITHUB_REPO_URL, GET_STARTED_LINK, PROJECT_NAME } from '@/config'
+import {
+  GITHUB_REPO_URL,
+  GET_STARTED_LINK,
+  PROJECT_NAME,
+  DEFAULT_LANGUAGE_CODE,
+} from '@/config'
 import { type LandingPageObj } from '@/i18n/ui'
 
 const { t } = Astro.props as { t: LandingPageObj }
 
-const lang = Astro.url.pathname.split('/')[1] || 'en'
+const lang = Astro.url.pathname.split('/')[1] || DEFAULT_LANGUAGE_CODE
 ---
 
 <Base>

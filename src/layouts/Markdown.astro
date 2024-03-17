@@ -3,13 +3,14 @@ import { type Frontmatter } from '@/types'
 import { type MarkdownHeading } from 'astro'
 import type { LanguageKeys } from '@/i18n/ui'
 
+import { DEFAULT_LANGUAGE_CODE } from '@/config'
 import Base from '@/layouts/Base.astro'
 import Sidebar from '@/components/navigation/Sidebar.astro'
 import OnThisPage from '@/components/navigation/OnThisPage.astro'
 import PreviousNextPage from '@/components/navigation/PreviousNextPage.astro'
 import EditThisPage from '@/components/navigation/EditThisPage.astro'
 
-const langFromURL = Astro.url.pathname.split('/')[1] || 'en'
+const langFromURL = Astro.url.pathname.split('/')[1] || DEFAULT_LANGUAGE_CODE
 const lang: LanguageKeys = langFromURL as LanguageKeys
 
 const { frontmatter, headings } = Astro.props as {
