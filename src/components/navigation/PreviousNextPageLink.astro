@@ -1,0 +1,45 @@
+---
+import clsx from 'clsx'
+
+const { t, link, text, isNext } = Astro.props as {
+  t: string
+  link: string
+  text: string
+  isNext: boolean | null
+}
+---
+
+<a
+  title={t}
+  class={clsx(
+    'flex items-center rounded-base border border-black/50 p-[10px] px-5 no-underline transition-colors hover:border-black dark:border-white/50 dark:hover:border-white',
+    isNext && 'justify-start flex-row-reverse'
+  )}
+  href={Astro.url.origin + '/' + link}
+>
+  <svg
+    class={clsx(
+      'h-8 w-8 flex-shrink-0 w600:hidden w500:inline',
+      isNext ? 'rotate-180 ml-4' : 'mr-4'
+    )}
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 24 24"
+    fill="none"
+  >
+    <path
+      class="stroke-lightModeIcon dark:stroke-darkModeIcon"
+      d="M6 12H18M6 12L11 7M6 12L11 17"
+      stroke-width="1.5"
+      stroke-linecap="round"
+      stroke-linejoin="round"></path>
+  </svg>
+
+  <div
+    class="block max-w-full overflow-hidden overflow-ellipsis whitespace-nowrap"
+  >
+    <p class={clsx('text-sm opacity-80', isNext && 'text-right')}>{text}</p>
+    <span class="text-2xl w900:text-xl">
+      {t}
+    </span>
+  </div>
+</a>
