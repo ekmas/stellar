@@ -33,10 +33,10 @@ const { frontmatter } = Astro.props as {
     <ViewTransitions />
     <HeadSeo type="website" frontmatter={frontmatter} />
   </head>
-  <body class="text-black dark:text-white">
+  <body class="text-lightModeText dark:text-darkModeText">
     <Nav />
     <div
-      class="fixed left-0 top-0 z-[-2] h-screen w-full bg-neutral-100 bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(120,119,198,0.5),rgba(0,0,0,0))] transition-colors duration-[inherit] dark:bg-neutral-950 dark:bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(120,119,198,0.3),rgba(255,255,255,0))]"
+      class="fixed left-0 top-0 z-[-2] h-screen w-full bg-lightModeBg bg-lightModeGradient transition-colors duration-[inherit] dark:bg-darkModeBg dark:bg-darkModeGradient"
     >
     </div>
     <div class="pt-20">

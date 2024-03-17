@@ -15,7 +15,7 @@ const { headings, lang } = Astro.props as {
 
   <div class="my-5 text-sm">
     <a
-      class="mb-1 flex w-[250px] items-center justify-between rounded-lg p-1.5 pl-3 text-base text-black/80 transition-colors hover:bg-black/10 hover:text-black dark:text-white/80 dark:hover:bg-white/10 dark:hover:text-white w1200:w-full"
+      class="mb-1 flex w-[250px] items-center justify-between rounded-base p-1.5 pl-3 text-base text-lightModeText/80 transition-colors hover:bg-black/10 hover:text-lightModeText dark:text-darkModeText/80 dark:hover:bg-white/10 dark:hover:text-darkModeText w1200:w-full"
       href="#_top"
     >
       <span class="w1200:text-sm">{ON_THIS_PAGE[lang].scrollToTop}</span>
@@ -27,7 +27,7 @@ const { headings, lang } = Astro.props as {
         fill="none"
       >
         <path
-          class="fill-black/80 dark:fill-white/80"
+          class="fill-lightModeIcon/80 dark:fill-darkModeIcon/80"
           fill-rule="evenodd"
           clip-rule="evenodd"
           d="M11.4697 3.46967C11.7626 3.17678 12.2374 3.17678 12.5303 3.46967L18.5303 9.46967C18.8232 9.76256 18.8232 10.2374 18.5303 10.5303C18.2374 10.8232 17.7626 10.8232 17.4697 10.5303L12.75 5.81066L12.75 20C12.75 20.4142 12.4142 20.75 12 20.75C11.5858 20.75 11.25 20.4142 11.25 20L11.25 5.81066L6.53033 10.5303C6.23744 10.8232 5.76256 10.8232 5.46967 10.5303C5.17678 10.2374 5.17678 9.76256 5.46967 9.46967L11.4697 3.46967Z"
@@ -38,7 +38,7 @@ const { headings, lang } = Astro.props as {
       headings.map((heading) => {
         return (
           <a
-            class="mb-1 block rounded-lg p-1.5 text-black/80 transition-colors hover:bg-black/10 hover:text-black dark:text-white/80 dark:hover:bg-white/10 dark:hover:text-white"
+            class="mb-1 block rounded-base p-1.5 text-lightModeText/80 transition-colors hover:bg-black/10 hover:text-lightModeText dark:text-darkModeText/80 dark:hover:bg-white/10 dark:hover:text-darkModeText"
             style={{ paddingLeft: `${(heading.depth - 0.5) * 8}` + 'px' }}
             href={`#${heading.slug}`}
           >
@@ -56,7 +56,7 @@ const { headings, lang } = Astro.props as {
   const observer = () => {
     document
       .querySelectorAll(
-        "#markdown h1:not([id='_top']), #markdown h2:not([id='_top']), #markdown h3:not([id='_top']), #markdown h4:not([id='_top'])"
+        "#markdown h1:not([id='_top']), #markdown h2:not([id='_top']), #markdown h3:not([id='_top']), #markdown h4:not([id='_top'])",
       )
       .forEach((h) => {
         new IntersectionObserver(
@@ -65,15 +65,15 @@ const { headings, lang } = Astro.props as {
               const id = entry.target.id
 
               const tocItem = Array.from(
-                document.querySelectorAll(`a[href="#${id}"]`)
+                document.querySelectorAll(`a[href="#${id}"]`),
               ).at(-1)
               if (!tocItem) return
 
               if (entry.isIntersecting) {
                 const currentActiveElements = Array.from(
                   document.querySelectorAll(
-                    `[data-current-active-tab-content-item="true"]`
-                  )
+                    `[data-current-active-tab-content-item="true"]`,
+                  ),
                 )
 
                 if (currentActiveElements.length) {
@@ -81,7 +81,7 @@ const { headings, lang } = Astro.props as {
                     el.classList.remove(
                       'font-medium',
                       'bg-black/10',
-                      'dark:bg-white/10'
+                      'dark:bg-white/10',
                     )
                     el.removeAttribute('data-current-active-tab-content-item')
                   }
@@ -90,11 +90,11 @@ const { headings, lang } = Astro.props as {
                 tocItem.classList.add(
                   'font-medium',
                   'bg-black/10',
-                  'dark:bg-white/10'
+                  'dark:bg-white/10',
                 )
                 tocItem.setAttribute(
                   'data-current-active-tab-content-item',
-                  true
+                  true,
                 )
               }
             })
@@ -102,7 +102,7 @@ const { headings, lang } = Astro.props as {
           {
             rootMargin: '-100px 0% -66%',
             threshold: 1,
-          }
+          },
         ).observe(h)
       })
   }

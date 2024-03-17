@@ -13,14 +13,14 @@ const { t, link, text, isNext } = Astro.props as {
   title={t}
   class={clsx(
     'flex items-center rounded-base border border-black/50 p-[10px] px-5 no-underline transition-colors hover:border-black dark:border-white/50 dark:hover:border-white',
-    isNext && 'justify-start flex-row-reverse'
+    isNext && 'justify-start flex-row-reverse',
   )}
   href={Astro.url.origin + '/' + link}
 >
   <svg
     class={clsx(
       'h-8 w-8 flex-shrink-0 w600:hidden w500:inline',
-      isNext ? 'rotate-180 ml-4' : 'mr-4'
+      isNext ? 'rotate-180 ml-4' : 'mr-4',
     )}
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 24 24"

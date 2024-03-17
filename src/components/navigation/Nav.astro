@@ -46,14 +46,14 @@ const docs: MarkdownRecord[] = await getDocs()
   class="fixed left-0 top-0 z-[60] h-20 w-full border-b border-black/20 bg-opacity-50 backdrop-blur-md backdrop-filter dark:border-white/20"
 >
   <div
-    class="w500:px-5 mx-auto flex h-20 w-full items-center justify-between px-8 py-5"
+    class="mx-auto flex h-20 w-full items-center justify-between px-8 py-5 w500:px-5"
   >
     <div class="flex items-center">
       <a
         class="mr-10 inline-block transition-opacity hover:opacity-70 w800:mr-0"
         href={lang === 'en' ? '/' : `/${lang}`}
       >
-        <h2 class="w500:text-xl text-2xl font-bold">{PROJECT_NAME}</h2>
+        <h2 class="text-2xl font-bold w500:text-xl">{PROJECT_NAME}</h2>
       </a>
 
       <div class="z-20 w800:hidden">
@@ -70,7 +70,7 @@ const docs: MarkdownRecord[] = await getDocs()
         )
       }
       <a
-        class="w500:hidden mr-10 hover:opacity-70"
+        class="mr-10 hover:opacity-70 w500:hidden"
         target="_blank"
         href={GITHUB_REPO_URL}
       >
@@ -79,7 +79,7 @@ const docs: MarkdownRecord[] = await getDocs()
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 1024 1024"
           ><path
-            class="fill-black transition-colors dark:fill-white"
+            class="fill-lightModeIcon transition-colors dark:fill-darkModeIcon"
             d="m1024 525c0 225.9-146.6 417.9-348.8 485.8-25.6 5.1-35.2-10.9-35.2-24.4 0-17.2.6-72.3.6-140.8 0-48-16-78.7-34.5-94.7 113.9-12.8 233.6-56.3 233.6-252.8 0-56.3-19.9-101.7-52.5-137.6 5.1-12.8 23-65.3-5.1-135.7 0 0-42.9-14-140.8 52.5-41-11.5-84.5-17.3-128-17.3s-87.1 5.8-128 17.3c-97.9-65.9-140.8-52.5-140.8-52.5-28.2 70.4-10.3 122.9-5.1 135.7-32.7 35.9-52.5 81.9-52.5 137.6 0 195.9 119 240 232.9 252.8-14.7 12.8-28.1 35.2-32.6 68.5-29.4 13.4-103 35.2-149.1-42.2-9.6-15.4-38.4-53.2-78.7-52.5-42.9.6-17.3 24.3.6 33.9 21.8 12.2 46.7 57.6 52.5 72.3 10.2 28.8 43.5 83.9 172.1 60.2 0 42.9.7 83.2.7 95.3 0 13.5-9.6 28.8-35.2 24.4-203.5-67.9-350.1-259.2-350.1-485.8 0-282.9 229.1-512 512-512s512 229.1 512 512z"
             fill-rule="evenodd"></path></svg
         >

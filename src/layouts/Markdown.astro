@@ -27,7 +27,7 @@ const { frontmatter, headings } = Astro.props as {
       <OnThisPage lang={lang} headings={headings} />
       <div
         id="markdown"
-        class="w500:p-5 prose w-full max-w-full break-words p-10 text-black/90 w1200:prose-sm prose-headings:scroll-mt-28 prose-headings:text-black prose-a:text-black prose-blockquote:text-black prose-strong:text-black prose-ol:text-black prose-ul:text-black prose-table:text-black prose-tr:text-black prose-td:text-black prose-hr:bg-transparent dark:text-white/90 dark:prose-headings:text-white dark:prose-a:text-white dark:prose-blockquote:text-white dark:prose-strong:text-white dark:prose-code:text-white dark:prose-ol:text-white dark:prose-ul:text-white dark:prose-table:text-white dark:prose-tr:text-white dark:prose-td:text-white w800:p-8"
+        class="prose w-full max-w-full break-words p-10 text-lightModeText/90 w1200:prose-sm prose-headings:scroll-mt-28 prose-headings:text-lightModeText prose-a:text-lightModeText prose-blockquote:text-lightModeText prose-strong:text-lightModeText prose-ol:text-lightModeText prose-ul:text-lightModeText prose-table:text-lightModeText prose-tr:text-lightModeText prose-td:text-lightModeText prose-hr:bg-transparent dark:text-darkModeText/90 dark:prose-headings:text-darkModeText dark:prose-a:text-darkModeText dark:prose-blockquote:text-darkModeText dark:prose-strong:text-darkModeText dark:prose-code:text-darkModeText dark:prose-ol:text-darkModeText dark:prose-ul:text-darkModeText dark:prose-table:text-darkModeText dark:prose-tr:text-darkModeText dark:prose-td:text-darkModeText w800:p-8 w500:p-5"
       >
         <h1 class="w500:text-2xl" id="_top">{frontmatter.title}</h1>
         <p>{frontmatter.description}</p>

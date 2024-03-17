@@ -13,27 +13,27 @@ const lang = Astro.url.pathname.split('/')[1] || 'en'
     <div class="mx-auto w-[1300px] max-w-full px-5">
       <div class="flex flex-col items-center">
         <h1
-          class="w900:w-full w600:text-3xl mx-auto w-[800px] bg-gradient-to-b from-black to-neutral-700 bg-clip-text text-center text-5xl font-extrabold leading-[1.4] text-transparent dark:from-white dark:to-neutral-400"
+          class="mx-auto w-[800px] bg-gradient-to-b from-darkModeBg to-darkModeBg/60 bg-clip-text text-center text-5xl font-extrabold leading-[1.4] text-transparent dark:from-lightModeBg dark:to-lightModeBg/60 w900:w-full w600:text-3xl"
         >
           {PROJECT_NAME}
         </h1>
         <p
-          class="w900:w-full w600:text-lg mx-auto mt-7 w-[900px] text-center text-xl leading-relaxed tracking-wide opacity-80"
+          class="mx-auto mt-7 w-[900px] text-center text-xl leading-relaxed tracking-wide opacity-80 w900:w-full w600:text-lg"
         >
           {t.description}
         </p>
-        <div class="w600:mt-9 mt-12 flex items-center">
+        <div class="mt-12 flex items-center w600:mt-9">
           <a
             href={`/${lang}${GET_STARTED_LINK}`}
-            class="w600:text-base mr-5 flex h-12 items-center justify-center rounded-md bg-neutral-950 px-6 text-center text-lg text-white transition-all hover:bg-neutral-700 dark:bg-neutral-100 dark:text-black dark:hover:bg-neutral-300 w400:mr-3 w400:h-10 w400:px-3"
+            class="mr-5 flex h-12 items-center justify-center rounded-base bg-darkModeBg px-6 text-center text-lg text-darkModeText transition-all hover:bg-darkModeBgHover dark:bg-lightModeBg dark:text-lightModeText dark:hover:bg-lightModeBgHover w600:text-base w400:mr-3 w400:h-10 w400:px-3"
             >{t.getStartedBtnText}
           </a>
           <a
             target="_blank"
             href={GITHUB_REPO_URL}
-            class="group relative inline-flex h-12 items-center justify-center rounded-md bg-neutral-100 px-6 font-medium text-black outline outline-1 outline-black/50 transition-colors hover:outline-black dark:bg-neutral-950 dark:text-white dark:outline-white/50 dark:hover:outline-white w400:h-10 w400:px-3"
+            class="group relative inline-flex h-12 items-center justify-center rounded-base bg-lightModeBg px-6 font-medium text-lightModeText outline outline-1 outline-black/50 transition-colors hover:outline-black dark:bg-darkModeBg dark:text-white dark:outline-white/50 dark:hover:outline-white w400:h-10 w400:px-3"
           >
-            <span class="w600:text-base text-center text-lg"
+            <span class="text-center text-lg w600:text-base"
               >{t.githubBtnText}</span
             >
             <div class="relative ml-3 h-5 w-5 overflow-hidden w400:hidden">

@@ -58,7 +58,7 @@ export default function Search({
         onClick={() => {
           setIsOverlayActive(true)
         }}
-        className="flex w-full items-center gap-4 rounded-md px-6 py-2 outline outline-1 outline-black/20 transition-[background-color] hover:bg-black/20 dark:outline-white/20 dark:hover:bg-white/20 w400:hidden"
+        className="flex w-full items-center gap-4 rounded-base px-6 py-2 outline outline-1 outline-black/20 transition-[background-color] hover:bg-black/20 dark:outline-white/20 dark:hover:bg-white/20 w400:hidden"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -68,7 +68,7 @@ export default function Search({
         >
           <path
             d="M15.7955 15.8111L21 21M18 10.5C18 14.6421 14.6421 18 10.5 18C6.35786 18 3 14.6421 3 10.5C3 6.35786 6.35786 3 10.5 3C14.6421 3 18 6.35786 18 10.5Z"
-            className="stroke-black dark:stroke-white"
+            className="stroke-lightModeIcon dark:stroke-darkModeIcon"
             strokeWidth="2"
             strokeLinecap="round"
             strokeLinejoin="round"
@@ -91,7 +91,7 @@ export default function Search({
         >
           <path
             d="M15.7955 15.8111L21 21M18 10.5C18 14.6421 14.6421 18 10.5 18C6.35786 18 3 14.6421 3 10.5C3 6.35786 6.35786 3 10.5 3C14.6421 3 18 6.35786 18 10.5Z"
-            className="stroke-black dark:stroke-white"
+            className="stroke-lightModeIcon dark:stroke-darkModeIcon"
             strokeWidth="2"
             strokeLinecap="round"
             strokeLinejoin="round"
@@ -111,20 +111,20 @@ export default function Search({
       >
         <div
           className={clsx(
-            'mx-auto flex h-full w-[700px] flex-col rounded-xl border border-black/50 bg-neutral-100 p-10 transition-all duration-300 dark:border-white/50 dark:bg-neutral-950 w800:w-full w800:p-5',
-            isOverlayActive ? 'scale-100' : 'scale-[0.8]',
+            'mx-auto flex h-full w-[700px] flex-col rounded-base border border-black/50 bg-lightModeBg p-10 transition-all duration-300 dark:border-white/50 dark:bg-darkModeBg w800:w-full w800:p-5',
+            isOverlayActive ? 'scale-100' : 'scale-[0.9]',
           )}
         >
           <div className="h-[82px]">
             <input
               onChange={handleInputChange}
-              className="w600:text-lg w-full rounded-md bg-transparent p-[10px] px-5 text-xl outline outline-1 outline-black/20 transition-[outline] focus:outline-black/50 dark:outline-white/20 dark:focus:outline-white/50"
+              className="w-full rounded-base bg-transparent p-[10px] px-5 text-xl outline outline-1 outline-black/20 transition-[outline] focus:outline-black/50 dark:outline-white/20 dark:focus:outline-white/50 w600:text-lg"
               placeholder={SEARCH[lang].search}
               type="text"
             />
 
             {matchedItems.length > 0 && !message && (
-              <p className="w600:text-sm mt-[10px]">
+              <p className="mt-[10px] w600:text-sm">
                 {matchedItems.length} {SEARCH[lang].results}
               </p>
             )}

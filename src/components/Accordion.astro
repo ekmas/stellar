@@ -2,9 +2,12 @@
 const { title, key } = Astro.props as { title: string; key: string }
 ---
 
-<div id={`accordion_${key}`} class="accordion group relative my-0.5 rounded-md">
+<div
+  id={`accordion_${key}`}
+  class="accordion group relative my-0.5 rounded-base"
+>
   <button
-    class="accordion__button flex w-full flex-1 items-center justify-between gap-2 rounded-md p-2 text-left font-medium text-black/80 transition hover:bg-black/10 dark:text-white/80 hover:dark:bg-white/10"
+    class="accordion__button flex w-full flex-1 items-center justify-between gap-2 rounded-base p-2 text-left font-medium text-lightModeText/80 transition hover:bg-black/10 dark:text-darkModeText/80 hover:dark:bg-white/10"
     type="button"
     id={`${key} accordion menu button`}
     aria-expanded="false"
@@ -22,7 +25,7 @@ const { title, key } = Astro.props as { title: string; key: string }
       fill="none"
     >
       <path
-        class="stroke-black/80 dark:stroke-white/80"
+        class="stroke-lightModeIcon/80 dark:stroke-darkModeIcon/80"
         d="M4 9L12 17L20 9"
         stroke-width="1.5"
         stroke-linecap="round"
@@ -42,17 +45,17 @@ const { title, key } = Astro.props as { title: string; key: string }
 <script>
   function accordionSetup() {
     const accordionMenus = document.querySelectorAll(
-      '.accordion'
+      '.accordion',
     ) as NodeListOf<HTMLElement>
     accordionMenus.forEach((accordionMenu) => {
       const accordionButton = accordionMenu.querySelector(
-        '.accordion__button'
+        '.accordion__button',
       ) as HTMLElement
       const accordionChevron = accordionMenu.querySelector(
-        '.accordion__chevron'
+        '.accordion__chevron',
       ) as HTMLElement
       const accordionContent = accordionMenu.querySelector(
-        '.accordion__content'
+        '.accordion__content',
       ) as HTMLElement
 
       const openAccordion = () => {

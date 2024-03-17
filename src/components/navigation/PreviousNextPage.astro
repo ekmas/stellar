@@ -1,6 +1,7 @@
 ---
 import { SIDEBAR } from '@/i18n/sidebar'
 import { type LanguageKeys, MISC } from '@/i18n/ui'
+import PreviousNextPageLink from '@/components/navigation/PreviousNextPageLink.astro'
 
 const { lang } = Astro.props as { lang: LanguageKeys }
 
@@ -49,71 +50,28 @@ const index = getLinkIndex() as number
 ---
 
 <div
-  class="w500:px-5 w500:grid-cols-1 mb-20 grid grid-cols-2 gap-5 px-10 w800:px-8"
+  class="mb-20 grid grid-cols-2 gap-5 px-10 w800:px-8 w500:grid-cols-1 w500:px-5"
 >
   <div>
     {
       index !== 0 && (
-        <a
-          title={flattenedLinksArray[index - 1].t}
-          class="flex items-center rounded-md border border-black/50 p-[10px] px-5 no-underline transition-[background-color] hover:border-black dark:border-white/50 dark:hover:border-white"
-          href={Astro.url.origin + '/' + flattenedLinksArray[index - 1].link}
-        >
-          <svg
-            class="w600:hidden w500:inline mr-4 h-8 w-8 flex-shrink-0"
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 24 24"
-            fill="none"
-          >
-            <path
-              class="stroke-black dark:stroke-white"
-              d="M6 12H18M6 12L11 7M6 12L11 17"
-              stroke-width="1.5"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            />
-          </svg>
-
-          <div class="block max-w-full overflow-hidden overflow-ellipsis whitespace-nowrap">
-            <p class="text-sm opacity-80">{MISC[lang].previous}</p>
-            <span class="w900:text-xl text-2xl">
-              {flattenedLinksArray[index - 1].t}
-            </span>
-          </div>
-        </a>
+        <PreviousNextPageLink
+          t={flattenedLinksArray[index - 1].t}
+          link={flattenedLinksArray[index - 1].link}
+          text={MISC[lang].previous}
+        />
       )
     }
   </div>
   <div>
     {
       index !== flattenedLinksArray.length - 1 && (
-        <a
-          title={flattenedLinksArray[index + 1].t}
-          class="flex items-center justify-end rounded-md border border-black/50 p-[10px] px-5 no-underline transition-[background-color] hover:border-black dark:border-white/50 dark:hover:border-white"
-          href={Astro.url.origin + '/' + flattenedLinksArray[index + 1].link}
-        >
-          <div class="block max-w-full overflow-hidden overflow-ellipsis whitespace-nowrap">
-            <p class="text-right text-sm opacity-80">{MISC[lang].next}</p>
-            <span class="w900:text-xl text-2xl">
-              {flattenedLinksArray[index + 1].t}
-            </span>
-          </div>
-
-          <svg
-            class="w600:hidden w500:inline ml-4 h-8 w-8 flex-shrink-0"
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 24 24"
-            fill="none"
-          >
-            <path
-              class="stroke-black dark:stroke-white"
-              d="M6 12H18M18 12L13 7M18 12L13 17"
-              stroke-width="1.5"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            />
-          </svg>
-        </a>
+        <PreviousNextPageLink
+          t={flattenedLinksArray[index + 1].t}
+          link={flattenedLinksArray[index + 1].link}
+          text={MISC[lang].next}
+          isNext
+        />
       )
     }
   </div>
