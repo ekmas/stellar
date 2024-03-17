@@ -6,7 +6,7 @@ import expressiveCode from 'astro-expressive-code'
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://temp.com',
+  site: 'https://stellar-theme.netlify.app',
   integrations: [
     tailwind(),
     expressiveCode({
