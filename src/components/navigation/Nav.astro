@@ -4,6 +4,7 @@ import {
   GET_STARTED_LINK,
   PROJECT_NAME,
   DEFAULT_LANGUAGE_CODE,
+  SINGLE_LANGUAGE,
 } from '@/config'
 
 import { type LanguageKeys, NAV } from '@/i18n/ui'
@@ -93,7 +94,7 @@ const docs: MarkdownRecord[] = await getDocs()
       <div class="w500:hidden">
         <ThemeSwitcher />
       </div>
-      <SelectLanguage />
+      {!SINGLE_LANGUAGE && <SelectLanguage />}
       <MobileNav />
     </div>
   </div>

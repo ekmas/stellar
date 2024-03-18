@@ -24,3 +24,6 @@ export const GITHUB_EDIT_URL = GITHUB_REPO_URL + '/edit/main/src/pages/'
 
 export const GET_STARTED_LINK = '/getting-started'
 // used for landing page and nav link (just type it without language path)
+
+export const SINGLE_LANGUAGE = false
+// set this to true if you want to use only one language

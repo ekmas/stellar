@@ -1,4 +1,15 @@
-<div transition:persist class="mr-6 flex flex-col justify-center w500:mr-0">
+---
+import clsx from 'clsx'
+import { SINGLE_LANGUAGE } from '@/config'
+---
+
+<div
+  transition:persist
+  class={clsx(
+    'flex flex-col justify-center w500:mr-0',
+    SINGLE_LANGUAGE ? 'mr-0' : 'mr-6'
+  )}
+>
   <input
     type="checkbox"
     name="light-switch"
