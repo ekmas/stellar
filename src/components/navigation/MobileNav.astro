@@ -5,7 +5,7 @@ import { type MarkdownRecord } from '@/types'
 import type { LanguageKeys } from '@/i18n/ui'
 import { GITHUB_REPO_URL, DEFAULT_LANGUAGE_CODE } from '@/config'
 import ThemeSwitcher from '@/components/navigation/ThemeSwitcher.astro'
-import SidebarLinks from '@/components/navigation/SidebarLinks.astro'
+import SidebarLinks from '@/components/sidebar/SidebarLinks.astro'
 
 const langFromURL = Astro.url.pathname.split('/')[1] || DEFAULT_LANGUAGE_CODE
 const lang: LanguageKeys = langFromURL as LanguageKeys
