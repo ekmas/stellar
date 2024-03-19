@@ -11,3 +11,15 @@ export type Frontmatter = {
 export type MarkdownRecord = {
   url: string
 } & TitleDesc
+
+// sidebar types
+
+export type Section = {
+  sectionName?: string
+  sectionItems: { [key: string]: string | Subsection }
+}
+
+export type Subsection = {
+  subsectionName?: string
+  subsectionItems: { [key: string]: string }
+}
