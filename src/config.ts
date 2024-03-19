@@ -1,7 +1,7 @@
 import { type LanguageKeys } from '@/i18n/ui'
 
 export const PROJECT_NAME = 'Stellar'
-// used for landing page cta button and nav
+// used for landing page heading and nav home link
 
 export const SITE = {
   title: 'Stellar',
