@@ -1,8 +1,6 @@
 ---
-import { SIDEBAR } from '@/i18n/sidebar'
 import { type LanguageKeys } from '@/i18n/ui'
-import Accordion from '@/components/Accordion.astro'
-import SidebarLink from '@/components/navigation/SidebarLink.astro'
+import SidebarLinks from '@/components/navigation/SidebarLinks.astro'
 
 const { lang } = Astro.props as { lang: LanguageKeys }
 ---
@@ -10,45 +8,5 @@ const { lang } = Astro.props as { lang: LanguageKeys }
 <aside
   class="sidebar fixed left-0 top-20 z-10 h-[calc(100dvh-80px)] w-[300px] overflow-y-auto border-r border-r-black/20 px-5 py-4 dark:border-r-white/20 w1200:w-[250px] w1200:text-sm w800:hidden"
 >
-  {
-    Object.entries(SIDEBAR[lang]).map(([key, value]) => {
-      if (typeof value === 'string') {
-        return <SidebarLink href={`${lang}/${key}`} text={value} />
-      } else {
-        const sectionName = value.sectionName
-        const sectionKey = key
-        return (
-          <Accordion title={sectionName} key={sectionKey}>
-            {Object.entries(value.sectionItems).map(([key, value]) => {
-              if (typeof value === 'string') {
-                return (
-                  <SidebarLink
-                    href={`${lang}/${sectionKey}/${key}`}
-                    text={value}
-                  />
-                )
-              } else {
-                const subsectionName = value.subsectionName
-                const subsectionKey = key
-                return (
-                  <Accordion title={subsectionName} key={subsectionKey}>
-                    {Object.entries(value.subsectionItems).map(
-                      ([key, value]) => {
-                        return (
-                          <SidebarLink
-                            href={`${lang}/${sectionKey}/${subsectionKey}/${key}`}
-                            text={value}
-                          />
-                        )
-                      },
-                    )}
-                  </Accordion>
-                )
-              }
-            })}
-          </Accordion>
-        )
-      }
-    })
-  }
+  <SidebarLinks lang={lang} />
 </aside>

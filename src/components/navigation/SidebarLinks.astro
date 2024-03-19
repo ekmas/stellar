@@ -1,0 +1,63 @@
+---
+import { SIDEBAR } from '@/i18n/sidebar'
+import { type LanguageKeys } from '@/i18n/ui'
+import SidebarLink from '@/components/navigation/SidebarLink.astro'
+import type { Section, Subsection } from '@/types'
+import Accordion from '@/components/Accordion.astro'
+
+const { lang } = Astro.props as { lang: LanguageKeys }
+---
+
+<>
+  {
+    Object.entries(SIDEBAR[lang]).map(([key, value]) => {
+      if (typeof value === 'string') {
+        return <SidebarLink href={`${lang}/${key}`} text={value} />
+      } else {
+        const sectionName = (value as Section).sectionName
+        const sectionKey = key
+        if (sectionName) {
+          return (
+            <Accordion title={sectionName} key={sectionKey}>
+              {Object.entries((value as Section).sectionItems).map(
+                ([key, value]) => {
+                  if (typeof value === 'string') {
+                    return (
+                      <SidebarLink
+                        href={`${lang}/${sectionKey}/${key}`}
+                        text={value}
+                      />
+                    )
+                  } else {
+                    const subsectionName = (value as Subsection).subsectionName
+                    const subsectionKey = key
+                    if (subsectionName) {
+                      return (
+                        <Accordion title={subsectionName} key={subsectionKey}>
+                          {Object.entries(
+                            (value as Subsection).subsectionItems
+                          ).map(([key, value]) => {
+                            return (
+                              <SidebarLink
+                                href={`${lang}/${sectionKey}/${subsectionKey}/${key}`}
+                                text={value}
+                              />
+                            )
+                          })}
+                        </Accordion>
+                      )
+                    } else {
+                      return null
+                    }
+                  }
+                }
+              )}
+            </Accordion>
+          )
+        } else {
+          return null
+        }
+      }
+    })
+  }
+</>
