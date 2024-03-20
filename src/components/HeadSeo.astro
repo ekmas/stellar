@@ -16,7 +16,7 @@ const formattedContentTitle = frontmatter?.title
   : SITE.title
 
 const imageAlt = SITE.title
-const imageUrl = canonicalUrl + '/' + OG_IMAGE
+const imageUrl = canonicalUrl.origin + '/' + OG_IMAGE
 
 const ogType = type ?? 'article'
 ---
