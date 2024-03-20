@@ -1,82 +1,28 @@
-import { type LanguageKeys } from './ui'
+import { type LanguageKeys } from '@/i18n/ui'
 
 type SidebarSchema = {
   [Lang in LanguageKeys]: {
+    introduction: string
     'getting-started': string
-    'first-section': {
-      sectionName: string
-      sectionItems: {
-        'first-item': string
-        'second-item': string
-        'first-subsection': {
-          subsectionName: string
-          subsectionItems: {
-            'third-item': string
-            'fourth-item': string
-          }
-        }
-      }
-    }
-    'second-section': {
-      sectionName: string
-      sectionItems: {
-        'fifth-item': string
-        'sixth-item': string
-        'seventh-item': string
-      }
-    }
+    'sidebar-config': string
+    'writing-docs': string
+    'styling-config': string
   }
 }
 
 export const SIDEBAR: SidebarSchema = {
   en: {
+    introduction: 'Introduction',
     'getting-started': 'Getting started',
-    'first-section': {
-      sectionName: 'First section',
-      sectionItems: {
-        'first-item': 'First item',
-        'second-item': 'Second item',
-        'first-subsection': {
-          subsectionName: 'First subsection',
-          subsectionItems: {
-            'third-item': 'Third item',
-            'fourth-item': 'Fourth item',
-          },
-        },
-      },
-    },
-    'second-section': {
-      sectionName: 'Second section',
-      sectionItems: {
-        'fifth-item': 'Fifth item',
-        'sixth-item': 'Sixth item',
-        'seventh-item': 'Seventh item',
-      },
-    },
+    'sidebar-config': 'Sidebar config',
+    'writing-docs': 'Writing docs',
+    'styling-config': 'Styling config',
   },
   sr: {
-    'getting-started': 'Pocnimo',
-    'first-section': {
-      sectionName: 'Prva sekcija',
-      sectionItems: {
-        'first-item': 'Prva stvar',
-        'second-item': 'Druga stvar',
-        'first-subsection': {
-          subsectionName: 'Prva podsekcija',
-          subsectionItems: {
-            'third-item': 'Treca stvar ',
-            'fourth-item': 'Cetvrta stvar',
-          },
-        },
-      },
-    },
-    'second-section': {
-      sectionName: 'Druga sekcija',
-      sectionItems: {
-        'fifth-item': 'Peta stvar',
-        'sixth-item': 'Sesta stvar',
-        'seventh-item': 'Sedma stvar',
-      },
-    },
+    introduction: 'Uvod',
+    'getting-started': 'Početak',
+    'sidebar-config': 'Sidebar konfiguracija',
+    'writing-docs': 'Pisanje dokumentacije',
+    'styling-config': 'Konfiguracija stilizovanja',
   },
 }
