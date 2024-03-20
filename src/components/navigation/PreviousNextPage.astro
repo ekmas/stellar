@@ -2,6 +2,7 @@
 import { SIDEBAR } from '@/i18n/sidebar'
 import { type LanguageKeys, MISC } from '@/i18n/ui'
 import PreviousNextPageLink from '@/components/navigation/PreviousNextPageLink.astro'
+import type { Section } from '@/types'
 
 const { lang } = Astro.props as { lang: LanguageKeys }
 
@@ -14,22 +15,24 @@ const linksArray = Object.entries(SIDEBAR[lang]).map(([key, value]) => {
   } else {
     const sectionKey = key
 
-    return Object.entries(value.sectionItems).map(([key, value]) => {
-      if (typeof value === 'string') {
-        return {
-          link: `${lang}/${sectionKey}/${key}`,
-          t: value,
-        }
-      } else {
-        const subsectionKey = key
-        return Object.entries(value.subsectionItems).map(([key, value]) => {
+    return Object.entries((value as Section).sectionItems).map(
+      ([key, value]) => {
+        if (typeof value === 'string') {
           return {
-            link: `${lang}/${sectionKey}/${subsectionKey}/${key}`,
+            link: `${lang}/${sectionKey}/${key}`,
             t: value,
           }
-        })
+        } else {
+          const subsectionKey = key
+          return Object.entries(value.subsectionItems).map(([key, value]) => {
+            return {
+              link: `${lang}/${sectionKey}/${subsectionKey}/${key}`,
+              t: value,
+            }
+          })
+        }
       }
-    })
+    )
   }
 })
 
