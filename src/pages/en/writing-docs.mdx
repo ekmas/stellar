@@ -1,0 +1,94 @@
+---
+layout: '@/layouts/Markdown.astro'
+title: Writing docs
+description: Get started with writing docs.
+---
+
+## Get started
+
+Firstly create a markdown file (.md or .mdx) and name it so it corresponds to the <code>SidebarSchema</code> we covered earlier.
+It must be in kebab-case.
+
+Let's create a markdown file called <code>get-started.mdx</code>
+
+Inside every markdown file you must put <code>title</code>, <code>description</code>, and <code>layout</code>.
+
+In each markdown file put this frontmatter at the top of the file:
+
+```ts title="src/pages/en/getting-started.mdx"
+---
+layout: '@/layouts/Markdown.astro'
+title: Getting Started
+description: Learn how to get started with Stellar
+---
+```
+
+<code>Layout</code> value should always be the same.{' '}
+
+The <code>title</code> and <code>description</code> should
+be translated into the same language as the language of the folder in which they
+are located.
+
+e.g.
+
+English translation
+
+```ts title="src/pages/en/getting-started.mdx"
+---
+layout: '@/layouts/Markdown.astro'
+title: Getting Started
+description: Learn how to get started with Stellar
+---
+```
+
+Serbian translation
+
+```ts title="src/pages/sr/getting-started.mdx"
+---
+layout: '@/layouts/Markdown.astro'
+title: Pocnimo
+description: Nauci kako da pocnes korisiti Stellar.
+---
+```
+
+Now just start writing below that frontmatter.
+
+## Headings
+
+I suggest you to only use h2 (<code>##</code>) or smaller since there is already a h1 at the top of the page (title).
+
+## Code
+
+This project uses [expressive-code](https://expressive-code.com/) for code blocks.
+
+### Syntax highlighting
+
+If you want to add syntax highlighting to the codeblock add language code next to the opening tics:
+
+<code>```ts</code>
+
+const name: string = 'John'
+
+<code>```</code>
+
+It will look like this:
+
+```ts
+const name: string = 'John'
+```
+
+### Code block file name
+
+If you want to add file name to the top of the code block type title="file-name.js" next to the language code at the opening tics:
+
+<code>```ts title="index.ts"</code>
+
+const name: string = 'John'
+
+<code>```</code>
+
+It will look like this:
+
+```ts title="index.ts"
+const name: string = 'John'
+```

@@ -1,57 +1,216 @@
 ---
 layout: '@/layouts/Markdown.astro'
 title: Getting Started
-description: Learn how to start building your next documentation site with Starlight by Astro.
+description: Learn how to start building your next documentation site with Stellar.
 ---
 
-Starlight is a full-featured documentation theme built on top of the [Astro](https://astro.build) framework.
-This guide will help you get started with a new project.
-See the [manual setup instructions](/manual-setup/) to add Starlight to an existing Astro project.
+## Create a project
 
-## Quick Start
+[Create a new repo](https://github.com/ekmas/stellar/generate) from this template.
 
-### Create a new project
+## Setting up workspace
 
-Create a new Astro + Starlight project by running the following command in your terminal:
+Here are some vscode extensions you should install:
 
-This will create a new [project directory](/guides/project-structure/) with all the necessary files and configurations for your site.
+<ul>
+  <li>
+    [Astro](https://marketplace.visualstudio.com/items?itemName=astro-build.astro-vscode)
+    provides language support for `.astro` files, syntax highlighting and more
+  </li>
+  <li>
+    [Tailwind](https://marketplace.visualstudio.com/items?itemName=bradlc.vscode-tailwindcss)
+    gives you intellisense for tailwind utility classes
+  </li>
+  <li>
+    [Eslint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)
+    intergrates eslint into vscode
+  </li>
+  <li>
+    [MDX](https://marketplace.visualstudio.com/items?itemName=unifiedjs.vscode-mdx)
+    adds language support for `.mdx` files
+  </li>
+  <li>
+    [Prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)
+    integrates prettier into vscode
+  </li>
+</ul>
 
-### Start the development server
+But even if you don't install them it's not that big of a deal.
 
-When working locally, [Astro’s development server](https://docs.astro.build/en/reference/cli-reference/#astro-dev) lets you preview your work and automatically refreshes your browser when you make changes.
+## Config
 
-Inside your project directory, run the following command to start the development server:
+<ul>
+  <li>
+    Go to `src/config.ts` and configure those values
+  </li>
+  <li>
+    Set `GET_STARTED_LINK` to a link where user should go after he presses get
+    started button on landing page or docs link in nav (set it to first link in sidebar)
+  </li>
+  <li>
+    Go to `src/astro.config.mjs` and inside `site` enter your website url
 
-This will log a message to your terminal with the URL of your local preview.
-Open this URL to start browsing your site.
+    ```js ins={2} title="src/astro.config.mjs"
+    export default defineConfig({
+      site: 'https://your-website-url.com',
+    })
+    ```
 
-### Add content
+  </li>
+</ul>
 
-Starlight is ready for you to add new content, or bring your existing files!
+## I18N Config
 
-Add new pages to your site by creating Markdown files in the `src/content/docs/` directory.
+### Single language docs
 
-Read more about file-based routing and support for MDX and Markdoc files in the [“Pages”](/guides/pages/) guide.
+If you want to have your docs only in one language (I don't suggest you doing this unless you really want to) do the following:
 
-### Next steps
+<ul>
+  <li>
+    Inside `src/config.ts` set `SINGLE_LANGUAGE` to true
+    if you haven't already
+  </li>
+  <li>
+    Inside `src/i18n/ui.ts` in `LANGUAGES` object leave
+    only the language you want to use, and in the same file remove all data from
+    old languages
+  </li>
+  <li>
+    Inside `src/i18n/sidebar.ts` delete all data from old languages
+  </li>
+  <li>
+    Inside `src/components/navigation` in both `Nav.astro`{' '}
+    and `MobileNav.astro` components inside `getDocs` function leave
+    only language you want to use
 
-- **Configure:** Learn about common options in [“Customizing Starlight”](/guides/customization/).
-- **Navigate:** Set up your sidebar with the [“Sidebar Navigation”](/guides/sidebar/) guide.
-- **Components:** Discover built-in cards, tabs, and more in the [“Components”](/guides/components/) guide.
-- **Deploy:** Publish your work with the [“Deploy your site”](https://docs.astro.build/en/guides/deploy/) guide in the Astro docs.
+    ```ts del={4-11} ins={13-14}
+    const getDocs = async () => {
+      let docs: null | MarkdownInstance<any>[] = null
 
-## Updating Starlight
+      switch (lang) {
+        case 'en':
+          docs = await Astro.glob(`@/pages/en/**`)
+          break
+        case 'sr':
+          docs = await Astro.glob(`@/pages/sr/**`)
+          break
+      }
 
-Starlight is an Astro integration. You can update it and other Astro packages by running the following command in your terminal:
+      docs = await Astro.glob(`@/pages/en/**`)
+      // change this path so it fits your language
 
-See the [Starlight changelog](https://github.com/withastro/starlight/blob/main/packages/starlight/CHANGELOG.md) for a full list of the changes made in each release.
+      return docs.map((doc: MarkdownInstance<any>) => {
+        return {
+          title: doc.frontmatter.title,
+          description: doc.frontmatter.description,
+          url: doc.url,
+        } as MarkdownRecord
+      })
+    }
+    ```
 
-## Troubleshooting Starlight
+  </li>
+  <li>
+    Inside `src/pages` delete all astro files that are not `index.astro` and delete all folders except your lang folder
+  </li>
+</ul>
 
-Use the [project configuration](/reference/configuration/) and [individual page frontmatter configuration](/reference/frontmatter/) reference pages to ensure that your Starlight site is configured and functioning properly.
-See the guides in the sidebar for help adding content and customizing your Starlight site.
+### Multi language docs
 
-If your answer cannot be found in these docs, please visit the [full Astro Docs](https://docs.astro.build) for complete Astro documentation.
-Your question may be answered by understanding how Astro works in general, underneath this Starlight theme.
+<ul>
+  <li>
+    Inside `src/i18n/ui.ts` in `LANGUAGES` object add all
+    languages you wanna have your docs translated to
+  </li>
+  <li>
+    Inside `src/i18n/sidebar.ts` delete all data from old languages,
+    and add data from new languages
+  </li>
+  <li>
+    Inside `src/components/navigation` in both `Nav.astro`{' '}
+    and `MobileNav.astro` components inside `getDocs` add
+    cases for each language you wanna use.
 
-You can also check for any known [Starlight issues on GitHub](https://github.com/withastro/starlight/issues), and get help in the [Astro Discord](https://astro.build/chat/) from our active, friendly community! Post questions in our `#support` forum with the "starlight" tag, or visit our dedicated `#starlight` channel to discuss current development and more!
+    ```ts ins={11-13}
+    const getDocs = async () => {
+      let docs: null | MarkdownInstance<any>[] = null
+
+      switch (lang) {
+        case 'en':
+          docs = await Astro.glob(`@/pages/en/**`)
+          break
+        case 'sr':
+          docs = await Astro.glob(`@/pages/sr/**`)
+          break
+        case 'es':
+          docs = await Astro.glob(`@/pages/es/**`)
+          break
+      }
+
+      return docs.map((doc: MarkdownInstance<any>) => {
+        return {
+          title: doc.frontmatter.title,
+          description: doc.frontmatter.description,
+          url: doc.url,
+        } as MarkdownRecord
+      })
+    }
+    ```
+
+  </li>
+  <li>Inside `src/pages` delete all folders except your current lang folders.</li>
+  <li>
+  Also inside `src/pages` add a astro file for each lang except `DEFAULT_LANGUAGE` defined in `config.ts`
+  
+  e.g. You have 4 languages.
+  ```ts
+  export const LANGUAGES = {
+    en: 'English',
+    sr: 'Srpski',
+    es: 'Español',
+    fr: 'Français'
+  } as const
+  ```
+
+And let's say you have only `index.astro`.
+
+You will create `sr.astro`, `es.astro`, and `fr.astro`.
+
+```ts title="sr.astro"
+---
+import LandingPage from '@/components/LandingPage.astro'
+import { LANDING_PAGE } from '@/i18n/ui'
+---
+
+<LandingPage t={LANDING_PAGE.sr} />
+
+```
+
+<br />
+
+```ts title="es.astro"
+---
+import LandingPage from '@/components/LandingPage.astro'
+import { LANDING_PAGE } from '@/i18n/ui'
+---
+
+<LandingPage t={LANDING_PAGE.es} />
+
+```
+
+<br />
+
+```ts title="fr.astro"
+---
+import LandingPage from '@/components/LandingPage.astro'
+import { LANDING_PAGE } from '@/i18n/ui'
+---
+
+<LandingPage t={LANDING_PAGE.fr} />
+
+```
+
+Basically for every language you create make a new astro page and name it after that language code, and import `<LandingPage />` and pass `LANDING_PAGE` object to `t` prop with that language code property.
+
+  </li>
+</ul>

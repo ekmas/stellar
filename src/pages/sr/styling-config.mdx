@@ -1,0 +1,76 @@
+---
+layout: '@/layouts/Markdown.astro'
+title: Styling config
+description: Learn how to change theme styling
+---
+
+## Tailwind Config
+
+Go to `src/tailwind.config.mjs` to change variables.
+
+Don't touch `screens` unless you want to change the layout of the app.
+
+`lightModeGradient` and `lightModeGradient` inside
+`backgroundImage` are used for background gradient which you can see on
+each page.
+
+That background gradient element is in base layout.
+
+```html mark={3-5} title="src/layouts/Base.astro"
+<body class="text-lightModeText dark:text-darkModeText">
+  <nav />
+  <div
+    class="fixed left-0 top-0 z-[-2] h-screen w-full bg-lightModeBg bg-lightModeGradient transition-colors duration-[inherit] dark:bg-darkModeBg dark:bg-darkModeGradient"
+  ></div>
+  <div class="pt-20">
+    <slot />
+  </div>
+</body>
+```
+
+## Code blocks styling
+
+Inside `src/astro.config.mjs` inside `expressiveCode` object you can change code blocks styling.
+
+```ts title="src/astro.config.mjs"
+expressiveCode({
+    themes: ['github-dark', 'github-light'],
+    styleOverrides: {
+    frames: {
+        editorActiveTabIndicatorTopColor: 'transparent',
+        editorActiveTabBorderColor: '#80808080',
+        editorTabBarBorderBottomColor: '#80808080',
+    },
+    uiFontFamily: 'inherit',
+    borderColor: '#80808080',
+    },
+}),
+
+```
+
+Here is whole expressive code configuration [reference](https://expressive-code.com/reference/configuration/).
+
+Inside themes array add two themes for code blocks you wanna use. Here is a [list](https://expressive-code.com/guides/themes/#available-themes) of all supported themes.
+
+Then add those two themes to `src/config.ts` inside `LIGHT_MODE_CODE_BLOCK_THEME` and `DARK_MODE_CODE_BLOCK_THEME`.
+
+## Markdown styling
+
+For markdown styling this project uses tailwind plugin called [tailwindcss-typography](https://github.com/tailwindlabs/tailwindcss-typography)
+
+That plugin provides a utility class called `prose`, which gives all elements some styling.
+
+For almost every element there is prose utility class for that, e.g. if you want to change color of all `ul`s to black, you will type `prose-ul:text-black`.
+
+Remember that if you want to change styling of some elements, that you also have to do it for dark mode as well.
+
+Add those classes inside `src/layouts/Markdown.astro` to the element with `markdown` `id`.
+
+## Other styling
+
+Inside `src/styling` folder you have `code.css` and `scrollbar.css`.
+
+<ul>
+  <li>`code.css` is used for code tags in markdown files (not code blocks)</li>
+  <li>`scrollbar.css` is used for scrollbar styling</li>
+</ul>

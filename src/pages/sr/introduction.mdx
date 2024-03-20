@@ -1,0 +1,100 @@
+---
+layout: '@/layouts/Markdown.astro'
+title: Introduction
+description: Quick introduction to the project.
+---
+
+## About the project
+
+Stellar is documentation theme for Astro.js.
+
+The main purpose of this project
+is to give framework and library creators and maintainers a docs template they can use so they can focus more on
+writing the docs (markdown files), rather than setting up the whole docs project.
+
+## Features
+
+<ul>
+  <li>Astro v4</li>
+  <li>Dark mode</li>
+  <li>I18n (type safe)</li>
+  <li>MD & MDX support</li>
+  <li>Search powered by fuse.js</li>
+  <li>Tailwind styling</li>
+  <li>View transitions API</li>
+  <li>Responsive & SEO-friendly</li>
+  <li>Shiki code syntax styling</li>
+  <li>Sorted imports</li>
+  <li>Custom import path</li>
+</ul>
+
+## Project structure
+
+```
+├── public
+├── src
+│ ├── components
+│ ├── i18n
+│ │ ├── sidebar.ts
+│ │ ├── ui.ts
+│ ├── layouts
+│ ├── pages
+│ ├── styling
+│ ├── config.ts
+│ ├── types.ts
+├── .eslintrc.cjs
+├── .prettierignore
+├── .prettierrc.cjs
+├── astro.config.mjs
+├── tailwind.config.mjs
+├── tsconfig.json
+```
+
+<ul>
+  <li>
+    `public/` - Static assets that will not be
+    processed by Astro
+  </li>
+  <li>`components/` - All components used in project</li>
+  <li>
+    `i18n/sidebar.ts` - Inside this file is defined `SIDEBAR` object which is
+    used for displaying sidebar links inside
+    `src/components/sidebar/SidebarLinks.astro`
+  </li>
+  <li>
+    `i18n/ui.ts` - Used for defining all languages which docs should be
+    translated to, and translations for ui
+  </li>
+  <li>`layouts/` - All layouts used in project</li>
+  <li>
+    `pages/` - Inside pages you should have `index.astro` (landing page for
+    `DEFAULT_LANGUAGE` in `config.ts`) and `lang.astro` for every other language defined in
+    `LANGUAGES` inside `src/i18n/ui.ts`
+
+    Inside pages you will also place your markdown files inside each lang folder.
+
+  </li>
+  <li>`styling/` - Used for defining external stylesheets</li>
+  <li>`config.ts` - Used for configuring the whole project</li>
+  <li>`types.ts` - Used for defining commonly used types</li>
+  <li>`.eslintrc.cjs` - Eslint config file</li>
+  <li>`.prettierignore` - In this file enter all directoriums or files you don't wanna get linted and formatted by default</li>
+  <li>`.prettierrc.cjs` - Prettier config file</li>
+  <li>`astro.config.mjs` - Astro config file</li>
+  <li>`tailwind.config.mjs` - Tailwind config file</li>
+  <li>`tsconfig.json` - Typescript config file</li>
+</ul>
+
+## Commands
+
+| Command                   | Action                                           |
+| ------------------------- | ------------------------------------------------ |
+| `npm install`             | Installs dependencies                            |
+| `npm run dev`             | Starts local dev server at `localhost:4321`      |
+| `npm run build`           | Build your production site to `./dist/`          |
+| `npm run format`          | Formats the whole project                        |
+| `npm run lint`            | Lints the whole project                          |
+| `npm run typecheck`       | Checks is there any type errors                  |
+| `npm run preview`         | Preview your build locally, before deploying     |
+| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
+| `npm run astro -- --help` | Get help using the Astro CLI                     |
