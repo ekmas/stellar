@@ -1,5 +1,5 @@
 ---
-import { SITE, TWITTER_USERNAME } from '@/config'
+import { SITE, TWITTER_USERNAME, OG_IMAGE } from '@/config'
 import { type Frontmatter } from '@/types'
 
 type Props = {
@@ -15,8 +15,8 @@ const formattedContentTitle = frontmatter?.title
   ? frontmatter.title + ' - ' + SITE.title
   : SITE.title
 
-const imageAlt = 'Astro Docs'
-const imageUrl = canonicalUrl + 'white.png'
+const imageAlt = SITE.title
+const imageUrl = canonicalUrl + '/' + OG_IMAGE
 
 const ogType = type ?? 'article'
 ---
@@ -32,7 +32,7 @@ const ogType = type ?? 'article'
 <meta property="og:url" content={canonicalUrl} />
 <meta property="og:locale" content={SITE.defaultLanguage} />
 <meta property="og:image" content={imageUrl} />
-<meta property="og:image:alt" content={imageAlt} />
+<meta property="og:image:alt" content={SITE.title} />
 <meta property="og:site_name" content={SITE.title} />
 
 <!-- Twitter Tags -->
