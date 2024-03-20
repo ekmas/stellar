@@ -1,5 +1,5 @@
 import { type LanguageKeys } from '@/i18n/ui'
-import { type ThemeObjectOrShikiThemeName } from 'astro-expressive-code'
+import type { ThemeObjectOrShikiThemeName } from 'astro-expressive-code'
 
 export const PROJECT_NAME = 'Stellar'
 // used for landing page heading and nav home link
