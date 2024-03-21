@@ -63,13 +63,13 @@ const { frontmatter } = Astro.props as {
       document.documentElement.classList.add('dark')
       document.documentElement.setAttribute(
         'data-theme',
-        DARK_MODE_CODE_BLOCK_THEME as string
+        DARK_MODE_CODE_BLOCK_THEME as string,
       )
     } else {
       document.documentElement.classList.remove('dark')
       document.documentElement.setAttribute(
         'data-theme',
-        LIGHT_MODE_CODE_BLOCK_THEME as string
+        LIGHT_MODE_CODE_BLOCK_THEME as string,
       )
     }
 

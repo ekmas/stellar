@@ -35,7 +35,7 @@ const { lang } = Astro.props as { lang: LanguageKeys }
                       return (
                         <Accordion title={subsectionName} key={subsectionKey}>
                           {Object.entries(
-                            (value as Subsection).subsectionItems
+                            (value as Subsection).subsectionItems,
                           ).map(([key, value]) => {
                             return (
                               <SidebarLink
@@ -50,7 +50,7 @@ const { lang } = Astro.props as { lang: LanguageKeys }
                       return null
                     }
                   }
-                }
+                },
               )}
             </Accordion>
           )
