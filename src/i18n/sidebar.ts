@@ -7,6 +7,7 @@ type SidebarSchema = {
     'sidebar-config': string
     'writing-docs': string
     'styling-config': string
+    deploying: string
   }
 }
 
@@ -17,6 +18,7 @@ export const SIDEBAR: SidebarSchema = {
     'sidebar-config': 'Sidebar config',
     'writing-docs': 'Writing docs',
     'styling-config': 'Styling config',
+    deploying: 'Deploying',
   },
   sr: {
     introduction: 'Uvod',
@@ -24,5 +26,6 @@ export const SIDEBAR: SidebarSchema = {
     'sidebar-config': 'Sidebar konfiguracija',
     'writing-docs': 'Pisanje dokumentacije',
     'styling-config': 'Konfiguracija stilizovanja',
+    deploying: 'Postavljanje sajta',
   },
 }
