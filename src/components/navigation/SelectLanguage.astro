@@ -119,7 +119,10 @@ const lang: LanguageKeys = langFromURL as LanguageKeys
 
         if (location.pathname === '/') {
           location.assign(location.origin + '/' + selectedLang)
-        } else if (location.pathname === `/${lang}`) {
+        } else if (
+          location.pathname === `/${lang}` ||
+          location.pathname === `/${lang}/`
+        ) {
           location.assign(location.origin)
         } else {
           const currentPath = location.pathname.slice(3)
