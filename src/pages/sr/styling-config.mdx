@@ -1,20 +1,19 @@
 ---
 layout: '@/layouts/Markdown.astro'
-title: Styling config
-description: Learn how to change theme styling
+title: Konfiguracija stilizovanja
+description: Nauči kako da menjaš stilizovanje teme.
 ---
 
-## Tailwind Config
+## Tailwind konfiguracija
 
-Go to `src/tailwind.config.mjs` to change variables.
+Idite u `src/tailwind.config.mjs` da biste menjali promenljive.
 
-Don't touch `screens` unless you want to change the layout of the app.
+Ne dirajte ništa unutar `screens` osim ako ne želite da menjate layout aplikacije.
 
-`lightModeGradient` and `lightModeGradient` inside
-`backgroundImage` are used for background gradient which you can see on
-each page.
+`lightModeGradient` i `lightModeGradient` unutar
+`backgroundImage` se koriste za background gradient koji možete da vidite na svakoj stranici.
 
-That background gradient element is in base layout.
+Taj background gradient element se nalazi u base layout-u.
 
 ```html mark={3-5} title="src/layouts/Base.astro"
 <body class="text-lightModeText dark:text-darkModeText">
@@ -28,9 +27,9 @@ That background gradient element is in base layout.
 </body>
 ```
 
-## Code blocks styling
+## Stilizovanje kod blokova
 
-Inside `src/astro.config.mjs` inside `expressiveCode` object you can change code blocks styling.
+U `src/astro.config.mjs` unutar `expressiveCode` objekta možete da menjate stilizovanje kod blokova.
 
 ```ts title="src/astro.config.mjs"
 expressiveCode({
@@ -48,29 +47,31 @@ expressiveCode({
 
 ```
 
-Here is whole expressive code configuration [reference](https://expressive-code.com/reference/configuration/).
+Ovde se nalazi cela expressive code [konfiguracija](https://expressive-code.com/reference/configuration/).
 
-Inside themes array add two themes for code blocks you wanna use. Here is a [list](https://expressive-code.com/guides/themes/#available-themes) of all supported themes.
+Unutar niza `themes` dodajte dve teme za blokove koda koje želite da koristite. Ovde se nalazi [lista](https://expressive-code.com/guides/themes/#available-themes) svih podržanih tema.
 
-Then add those two themes to `src/config.ts` inside `LIGHT_MODE_CODE_BLOCK_THEME` and `DARK_MODE_CODE_BLOCK_THEME`.
+Onda te 2 teme dodajte u `src/config.ts` unutar `LIGHT_MODE_CODE_BLOCK_THEME` i `DARK_MODE_CODE_BLOCK_THEME`.
 
-## Markdown styling
+## Markdown stilizovanje
 
-For markdown styling this project uses tailwind plugin called [tailwindcss-typography](https://github.com/tailwindlabs/tailwindcss-typography)
+Za markdown stilizovanje ovaj projekat koristi plugin koji se zove [tailwindcss-typography](https://github.com/tailwindlabs/tailwindcss-typography)
 
-That plugin provides a utility class called `prose`, which gives all elements some styling.
+Taj plugin pruža utility klasu zvanu `prose`, koja svim elementima daje neko stilizovanje.
 
-For almost every element there is prose utility class for that, e.g. if you want to change color of all `ul`s to black, you will type `prose-ul:text-black`.
+Za skoro svaki element postoji prose utility klasa, npr. ako želite da promenite boju svih ul-ova u crno, samo napišite `prose-ul:text-black`
 
-Remember that if you want to change styling of some elements, that you also have to do it for dark mode as well.
+Zapamtite da ako želite da menjate stilizovanje nekih elementata, moraćete da dodate klasu i za tamni mod takodje.
 
-Add those classes inside `src/layouts/Markdown.astro` to the element with `markdown` `id`.
+Dodajte sve te klase unutar `src/layouts/Markdown.astro` u element sa `markdown` id-em.
 
-## Other styling
+## Ostalo stilizovanje
 
-Inside `src/styling` folder you have `code.css` and `scrollbar.css`.
+Unutar `src/styling` direktorijuma imate `code.css` i `scrollbar.css`.
 
 <ul>
-  <li>`code.css` is used for code tags in markdown files (not code blocks)</li>
-  <li>`scrollbar.css` is used for scrollbar styling</li>
+  <li>
+    `code.css` se koristi za kod tagove u markdown fajlovima (ne za kod blokove)
+  </li>
+  <li>`scrollbar.css` se koristi za scrollbar stilizovanje</li>
 </ul>

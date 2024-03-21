@@ -1,54 +1,55 @@
 ---
 layout: '@/layouts/Markdown.astro'
-title: Getting Started
-description: Learn how to start building your next documentation site with Stellar.
+title: Početak
+description: Nauči kako da kreneš praviti svoju sledeću dokumentaciju sa Stellar-om.
 ---
 
-## Create a project
+## Napravi projekat
 
-[Create a new repo](https://github.com/ekmas/stellar/generate) from this template.
+[Napravi novi repozitorijum](https://github.com/ekmas/stellar/generate) od ovog šablona.
 
-## Setting up workspace
+## Postavljanje radnog okruženja
 
-Here are some vscode extensions you should install:
+Ovo su neke vscode ekstenzije koje bi trebalo da instalirate:
 
 <ul>
   <li>
     [Astro](https://marketplace.visualstudio.com/items?itemName=astro-build.astro-vscode)
-    provides language support for `.astro` files, syntax highlighting and more
+    pruža jezičku podršku za `.astro` fajlove, stilizovanje sintakse i još
+    stvari
   </li>
   <li>
     [Tailwind](https://marketplace.visualstudio.com/items?itemName=bradlc.vscode-tailwindcss)
-    gives you intellisense for tailwind utility classes
+    pruža intellisense za tailwind utility klase
   </li>
   <li>
     [Eslint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)
-    intergrates eslint into vscode
+    integriše eslint u vscode
   </li>
   <li>
     [MDX](https://marketplace.visualstudio.com/items?itemName=unifiedjs.vscode-mdx)
-    adds language support for `.mdx` files
+    pruža jezičku podršku za `.mdx` fajlove
   </li>
   <li>
     [Prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)
-    integrates prettier into vscode
+    integriše prettier u vscode
   </li>
 </ul>
 
-But even if you don't install them it's not that big of a deal.
+Čak iako ih ne instalirate nije velika stvar.
 
-## Config
+## Konfiguracija
 
 <ul>
   <li>
-    Go to `src/config.ts` and configure those values
+    Idite u `src/config.ts` i konfigurišite te vrednosti
   </li>
   <li>
-    Set `GET_STARTED_LINK` to a link where user should go after he presses get
-    started button on landing page or docs link in nav (set it to first link in sidebar)
+    Stavite `GET_STARTED_LINK` da bude link na koji bi korisnik trebao da ode nakon što pritisne 
+    počni dugme na landing stranici ili dokumentacija link u navu (podesi da taj link bude prvi u sidebar-u)
   </li>
   <li>
-    Go to `src/astro.config.mjs` and inside `site` enter your website url
+    Idite u `src/astro.config.mjs` i unutar `site` unesite url vašeg sajta
 
     ```js ins={2} title="src/astro.config.mjs"
     export default defineConfig({
@@ -59,29 +60,29 @@ But even if you don't install them it's not that big of a deal.
   </li>
 </ul>
 
-## I18N Config
+## I18N Konfiguracija
 
-### Single language docs
+### Dokumentacija na jednom jeziku
 
-If you want to have your docs only in one language (I don't suggest you doing this unless you really want to) do the following:
+Ako želite da imate dokumentaciju samo na jednom jeziku (ne predlažem vam da to radite osim ako to zaista želite), uradite sledeće:
 
 <ul>
   <li>
-    Inside `src/config.ts` set `SINGLE_LANGUAGE` to true
-    if you haven't already
+    Unutar `src/config.ts` stavite `SINGLE_LANGUAGE` da bude `true`
+    ako već niste
   </li>
   <li>
-    Inside `src/i18n/ui.ts` in `LANGUAGES` object leave
-    only the language you want to use, and in the same file remove all data from
-    old languages
+    Unutar `src/i18n/ui.ts` u objektu `LANGUAGES` ostavite
+    samo jezik koji želite da koristite i u istom fajlu uklonite sve podatke iz
+    starih jezika
   </li>
   <li>
-    Inside `src/i18n/sidebar.ts` delete all data from old languages
+    Unutar `src/i18n/sidebar.ts` izbrišite sve podatke iz starih jezika
   </li>
   <li>
-    Inside `src/components/navigation` in both `Nav.astro`{' '}
-    and `MobileNav.astro` components inside `getDocs` function leave
-    only language you want to use
+    Unutar `src/components/navigation` u obe `Nav.astro`{' '}
+    i `MobileNav.astro` komponente unutar funkcije `getDocs` ostavite
+    samo jezik koji želite da koristite
 
     ```ts del={4-11} ins={13-14}
     const getDocs = async () => {
@@ -97,7 +98,7 @@ If you want to have your docs only in one language (I don't suggest you doing th
       }
 
       docs = await Astro.glob(`@/pages/en/**`)
-      // change this path so it fits your language
+      // promenite ovu putanju tako da odgovara vašem jeziku
 
       return docs.map((doc: MarkdownInstance<any>) => {
         return {
@@ -111,25 +112,25 @@ If you want to have your docs only in one language (I don't suggest you doing th
 
   </li>
   <li>
-    Inside `src/pages` delete all astro files that are not `index.astro` and delete all folders except your lang folder
+    Unutar `src/pages` izbrišite sve astro fajlove koje nisu `index.astro` i izbrišite sve direktorijume osim direktorijuma vašeg jezika 
   </li>
 </ul>
 
-### Multi language docs
+### Dokumentacija na više jezika
 
 <ul>
   <li>
-    Inside `src/i18n/ui.ts` in `LANGUAGES` object add all
-    languages you wanna have your docs translated to
+    Unutar `src/i18n/ui.ts` u objektu `LANGUAGES` dodajte sve
+    jezike na koje želite da vam dokumentacija budu prevedena
   </li>
   <li>
-    Inside `src/i18n/sidebar.ts` delete all data from old languages,
-    and add data from new languages
+    Unutar `src/i18n/sidebar.ts` izbrišite sve podatke iz starih jezika,
+    i dodajte podatke iz novih jezika
   </li>
   <li>
-    Inside `src/components/navigation` in both `Nav.astro`{' '}
-    and `MobileNav.astro` components inside `getDocs` add
-    cases for each language you wanna use.
+    Unutar `src/components/navigation` u obe `Nav.astro`{' '}
+    i `MobileNav.astro` komponente unutar `getDocs` dodajte case-eve
+    za svaki jezik koji želite da koristite.
 
     ```ts ins={11-13}
     const getDocs = async () => {
@@ -158,11 +159,11 @@ If you want to have your docs only in one language (I don't suggest you doing th
     ```
 
   </li>
-  <li>Inside `src/pages` delete all folders except your current lang folders.</li>
+  <li>Unutar `src/pages` izbrišite sve direktorijume osim vaših trenutnih jezičkih direktorijuma.</li>
   <li>
-  Also inside `src/pages` add a astro file for each lang except `DEFAULT_LANGUAGE` defined in `config.ts`
+  Takođe unutar `src/pages` dodajte astro fajl za svaki jezik osim `DEFAULT_LANGUAGE` definisanog u `config.ts`
   
-  e.g. You have 4 languages.
+  npr. Imate 4 jezika.
   ```ts
   export const LANGUAGES = {
     en: 'English',
@@ -172,9 +173,9 @@ If you want to have your docs only in one language (I don't suggest you doing th
   } as const
   ```
 
-And let's say you have only `index.astro`.
+I recimo da imate samo `index.astro`.
 
-You will create `sr.astro`, `es.astro`, and `fr.astro`.
+Napravićete `sr.astro`, `es.astro` i `fr.astro`.
 
 ```ts title="sr.astro"
 ---
@@ -210,7 +211,7 @@ import { LANDING_PAGE } from '@/i18n/ui'
 
 ```
 
-Basically for every language you create make a new astro page and name it after that language code, and import `<LandingPage />` and pass `LANDING_PAGE` object to `t` prop with that language code property.
+U suštini, za svaki jezik koji kreirate napravite novu astro stranicu i nazovite je prema kodu jezika, importujte `<LandingPage />` i prosledite objekat `LANDING_PAGE` u `t` prop sa property-em koda jezika.
 
   </li>
 </ul>

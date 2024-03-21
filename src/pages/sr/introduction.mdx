@@ -1,33 +1,32 @@
 ---
 layout: '@/layouts/Markdown.astro'
-title: Introduction
-description: Quick introduction to the project.
+title: Uvod
+description: Brzi uvod u projekat.
 ---
 
-## About the project
+## O projektu
 
-Stellar is documentation theme for Astro.js.
+Stellar je Astro.js tema za dokumentaciju.
 
-The main purpose of this project
-is to give framework and library creators and maintainers a docs template they can use so they can focus more on
-writing the docs (markdown files), rather than setting up the whole docs project.
+Glavna svrha ovog projekta je da se autorima i održavaocima frameworka i biblioteka pruži šablon za dokumentaciju
+koji mogu da koriste tako da se više fokusiraju na pisanje samih markdown fajlova nego na samo pravljenje i postavljanje projekta.
 
-## Features
+## Karakteristike
 
 <ul>
   <li>Astro v4</li>
-  <li>Dark mode</li>
-  <li>I18n (type safe)</li>
-  <li>MD & MDX support</li>
-  <li>Search powered by fuse.js</li>
-  <li>Tailwind styling</li>
+  <li>Tamni mod</li>
+  <li>I18n sa typescript podrškom</li>
+  <li>MD & MDX podrška</li>
+  <li>Pretraga pomoću fuse.js</li>
+  <li>Tailwind stilizovanje</li>
   <li>View transitions API</li>
-  <li>Responsive & SEO-friendly</li>
-  <li>Shiki code syntax styling</li>
-  <li>Custom import path</li>
+  <li>Responzivnost & SEO tagovi</li>
+  <li>Shiki stilizovanje sintakse koda</li>
+  <li>Prilagodjenja putanja za importovanje</li>
 </ul>
 
-## Project structure
+## Struktura projekta
 
 ```
 ├── public
@@ -51,49 +50,47 @@ writing the docs (markdown files), rather than setting up the whole docs project
 
 <ul>
   <li>
-    `public/` - Static assets that will not be
-    processed by Astro
+    `public/` - Statičke stvari koje Astro neće obradjivati
   </li>
-  <li>`components/` - All components used in project</li>
+  <li>`components/` - Sve komponente koje se koriste u projektu</li>
   <li>
-    `i18n/sidebar.ts` - Inside this file is defined `SIDEBAR` object which is
-    used for displaying sidebar links inside
+    `i18n/sidebar.ts` - U ovom fajlu je definisan `SIDEBAR` objekat koji služi za prikazivanje sidebar linkova u
     `src/components/sidebar/SidebarLinks.astro`
   </li>
   <li>
-    `i18n/ui.ts` - Used for defining all languages which docs should be
-    translated to, and translations for ui
+    `i18n/ui.ts` - Koristi se za definisanje svih jezika na kojim bi trebala 
+    dokumentacija da bude prevedena kao i prevodi za korisnički interfejs
   </li>
-  <li>`layouts/` - All layouts used in project</li>
+  <li>`layouts/` - Svi layout-ovi koji se koriste u projektu</li>
   <li>
-    `pages/` - Inside pages you should have `index.astro` (landing page for
-    `DEFAULT_LANGUAGE` in `config.ts`) and `lang.astro` for every other language defined in
-    `LANGUAGES` inside `src/i18n/ui.ts`
+    `pages/` - Unutrar pages bi trebalo da bude `index.astro` (landing stranica za
+    `DEFAULT_LANGUAGE` u `config.ts`) i `lang.astro` za svaki ostali jezik definisan u
+    `LANGUAGES` u `src/i18n/ui.ts`
 
-    Inside pages you will also place your markdown files inside each lang folder.
+    Unutar pages ćete takodje staviti vaše markdown fajlove unutar svakog direktorijuma za svaki jezik.
 
   </li>
-  <li>`styling/` - Used for defining external stylesheets</li>
-  <li>`config.ts` - Used for configuring the whole project</li>
-  <li>`types.ts` - Used for defining commonly used types</li>
-  <li>`.eslintrc.cjs` - Eslint config file</li>
-  <li>`.prettierignore` - In this file enter all directoriums or files you don't wanna get linted and formatted by default</li>
-  <li>`.prettierrc.cjs` - Prettier config file</li>
-  <li>`astro.config.mjs` - Astro config file</li>
-  <li>`tailwind.config.mjs` - Tailwind config file</li>
-  <li>`tsconfig.json` - Typescript config file</li>
+  <li>`styling/` - Koristi se za definisanje eksternih css fajlova</li>
+  <li>`config.ts` - Koristi se za konfigurisanje celog projekta</li>
+  <li>`types.ts` - Koristi se za definisanje često korištenih tipova</li>
+  <li>`.eslintrc.cjs` - Eslint konfiguracioni fajl</li>
+  <li>`.prettierignore` - U ovom fajlu stavite sve direktorijume i fajlove koje ne želite da budu formatirani i lintovani automatski</li>
+  <li>`.prettierrc.cjs` - Prettier konfiguracioni fajl</li>
+  <li>`astro.config.mjs` - Astro konfiguracioni fajl</li>
+  <li>`tailwind.config.mjs` - Tailwind konfiguracioni fajl</li>
+  <li>`tsconfig.json` - Typescript konfiguracioni fajl</li>
 </ul>
 
-## Commands
+## Komande
 
-| Command                   | Action                                           |
-| ------------------------- | ------------------------------------------------ |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run format`          | Formats the whole project                        |
-| `npm run lint`            | Lints the whole project                          |
-| `npm run typecheck`       | Checks is there any type errors                  |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+| Komanda                   | Šta radi                                                  |
+| ------------------------- | --------------------------------------------------------- |
+| `npm install`             | Instalira dependencije                                    |
+| `npm run dev`             | Startuje lokalni dev server na `localhost:4321`           |
+| `npm run build`           | Gradi ceo projekat unutrar `./dist/`                      |
+| `npm run format`          | Formatira ceo projekat                                    |
+| `npm run lint`            | Lintuje ceo projekat                                      |
+| `npm run typecheck`       | Proverava da li ima typescript grešaka                    |
+| `npm run preview`         | Pregleda vaš projekat lokalno, pre postavljanja           |
+| `npm run astro ...`       | Pokreće CLI komande kao što su `astro add`, `astro check` |
+| `npm run astro -- --help` | Potraži pomoć koristeći Astro CLI                         |
